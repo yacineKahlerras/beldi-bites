@@ -1,9 +1,11 @@
 import Nav from "@/components/nav";
+import Hero from "@/components/hero";
 
 export default function Home() {
   return (
-    <div className="display-flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Nav />
+      <Hero />
     </div>
   );
 }
