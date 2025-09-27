@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { RecipeCardProps } from "@/types/recipe";
 
 export default function RecipeCard({
@@ -12,6 +14,11 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/recipes/${recipe.id}`);
+  };
 
   const handleBookmark = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -84,7 +91,7 @@ export default function RecipeCard({
   `;
 
   return (
-    <div className={cardClasses}>
+    <div className={cardClasses} onClick={handleCardClick}>
       {/* Recipe Image */}
       <div className={imageClasses}>
         {!imageError ? (
@@ -287,9 +294,13 @@ export default function RecipeCard({
             </div>
           </div>
 
-          <button className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200">
+          <Link
+            href={`/recipes/${recipe.id}`}
+            className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200 inline-block text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             View Recipe
-          </button>
+          </Link>
         </div>
       </div>
     </div>

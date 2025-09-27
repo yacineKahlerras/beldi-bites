@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 // Sample recipe data
 const featuredRecipes = [
@@ -250,9 +251,12 @@ export default function FeaturedSection() {
 
         {/* View All Button */}
         <div className="text-center">
-          <button className="px-8 py-4 bg-white text-orange-600 font-semibold rounded-lg border-2 border-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl">
+          <Link
+            href="/recipes"
+            className="inline-block px-8 py-4 bg-white text-orange-600 font-semibold rounded-lg border-2 border-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
             View All Recipes
-          </button>
+          </Link>
         </div>
       </div>
     </section>
