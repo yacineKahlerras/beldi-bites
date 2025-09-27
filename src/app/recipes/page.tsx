@@ -1,32 +1,40 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import { RecipeFilters, RecipeSearchParams, Recipe, CategoryFilter, FilterOption } from '@/types/recipe';
-import { recipeService } from '@/services/recipeService';
-import SearchBar from '@/components/recipes/SearchBar';
-import FilterSidebar from '@/components/recipes/FilterSidebar';
-import RecipeGrid from '@/components/recipes/RecipeGrid';
-import Nav from '@/components/nav';
+import { useState, useEffect, useCallback } from "react";
+import {
+  RecipeFilters,
+  RecipeSearchParams,
+  Recipe,
+  CategoryFilter,
+  FilterOption,
+} from "@/types/recipe";
+import { recipeService } from "@/services/recipeService";
+import SearchBar from "@/components/recipes/SearchBar";
+import FilterSidebar from "@/components/recipes/FilterSidebar";
+import RecipeGrid from "@/components/recipes/RecipeGrid";
+import Nav from "@/components/nav";
 
 export default function RecipesPage() {
   // State management
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<RecipeFilters>({});
-  const [sortBy, setSortBy] = useState<'rating' | 'cookTime' | 'createdAt' | 'title'>('rating');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [sortBy, setSortBy] = useState<
+    "rating" | "cookTime" | "createdAt" | "title"
+  >("rating");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
-  
+
   // Filter options
   const [categories, setCategories] = useState<CategoryFilter[]>([]);
   const [cuisines, setCuisines] = useState<FilterOption[]>([]);
-  
+
   // UI state
   const [isFilterSidebarOpen, setIsFilterSidebarOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   // Fetch filter options on component mount
   useEffect(() => {
@@ -34,12 +42,12 @@ export default function RecipesPage() {
       try {
         const [categoriesData, cuisinesData] = await Promise.all([
           recipeService.getCategories(),
-          recipeService.getCuisines()
+          recipeService.getCuisines(),
         ]);
         setCategories(categoriesData);
         setCuisines(cuisinesData);
       } catch (error) {
-        console.error('Error fetching filter options:', error);
+        console.error("Error fetching filter options:", error);
       }
     };
 
@@ -56,7 +64,7 @@ export default function RecipesPage() {
         sortBy: sortBy,
         sortOrder: sortOrder,
         page: currentPage,
-        limit: 12
+        limit: 12,
       };
 
       const response = await recipeService.searchRecipes(searchParams);
@@ -64,7 +72,7 @@ export default function RecipesPage() {
       setTotalPages(response.totalPages);
       setTotalCount(response.totalCount);
     } catch (error) {
-      console.error('Error searching recipes:', error);
+      console.error("Error searching recipes:", error);
       setRecipes([]);
     } finally {
       setIsLoading(false);
@@ -92,31 +100,31 @@ export default function RecipesPage() {
 
   const handleSortChange = (newSortBy: typeof sortBy) => {
     if (newSortBy === sortBy) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortBy(newSortBy);
-      setSortOrder('desc');
+      setSortOrder("desc");
     }
   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBookmark = (recipeId: string) => {
-    console.log('Bookmarking recipe:', recipeId);
+    console.log("Bookmarking recipe:", recipeId);
     // Implement bookmark functionality
   };
 
   const handleShare = (recipe: Recipe) => {
-    console.log('Sharing recipe:', recipe.title);
+    console.log("Sharing recipe:", recipe.title);
     // Implement share functionality
     if (navigator.share) {
       navigator.share({
         title: recipe.title,
         text: recipe.description,
-        url: `/recipes/${recipe.id}`
+        url: `/recipes/${recipe.id}`,
       });
     }
   };
@@ -128,7 +136,7 @@ export default function RecipesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Nav />
-      
+
       {/* Header Section */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-8">
@@ -137,7 +145,8 @@ export default function RecipesPage() {
               Discover Amazing <span className="text-orange-600">Recipes</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Explore thousands of delicious recipes from around the world. Find your next favorite dish!
+              Explore thousands of delicious recipes from around the world. Find
+              your next favorite dish!
             </p>
           </div>
 
@@ -155,7 +164,7 @@ export default function RecipesPage() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
-                {isLoading ? 'Searching...' : `${totalCount} recipes found`}
+                {isLoading ? "Searching..." : `${totalCount} recipes found`}
               </span>
               {Object.keys(filters).length > 0 && (
                 <button
@@ -174,7 +183,9 @@ export default function RecipesPage() {
                 <select
                   value={`${sortBy}-${sortOrder}`}
                   onChange={(e) => {
-                    const [newSortBy, newSortOrder] = e.target.value.split('-') as [typeof sortBy, typeof sortOrder];
+                    const [newSortBy, newSortOrder] = e.target.value.split(
+                      "-"
+                    ) as [typeof sortBy, typeof sortOrder];
                     setSortBy(newSortBy);
                     setSortOrder(newSortOrder);
                   }}
@@ -194,19 +205,39 @@ export default function RecipesPage() {
               {/* View Toggle */}
               <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
                 <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2 ${viewMode === 'grid' ? 'bg-orange-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                  onClick={() => setViewMode("grid")}
+                  className={`p-2 ${
+                    viewMode === "grid"
+                      ? "bg-orange-600 text-white"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
                     <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                   </svg>
                 </button>
                 <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2 ${viewMode === 'list' ? 'bg-orange-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                  onClick={() => setViewMode("list")}
+                  className={`p-2 ${
+                    viewMode === "list"
+                      ? "bg-orange-600 text-white"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </button>
               </div>
@@ -216,8 +247,16 @@ export default function RecipesPage() {
                 onClick={toggleFilterSidebar}
                 className="lg:hidden p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
             </div>
@@ -245,7 +284,7 @@ export default function RecipesPage() {
             <RecipeGrid
               recipes={recipes}
               isLoading={isLoading}
-              variant={viewMode === 'grid' ? 'default' : 'compact'}
+              variant={viewMode === "grid" ? "default" : "compact"}
               onBookmark={handleBookmark}
               onShare={handleShare}
             />
@@ -260,7 +299,7 @@ export default function RecipesPage() {
                 >
                   Previous
                 </button>
-                
+
                 {[...Array(Math.min(5, totalPages))].map((_, index) => {
                   const page = index + 1;
                   return (
@@ -269,15 +308,15 @@ export default function RecipesPage() {
                       onClick={() => handlePageChange(page)}
                       className={`px-4 py-2 rounded-lg ${
                         currentPage === page
-                          ? 'bg-orange-600 text-white'
-                          : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
+                          ? "bg-orange-600 text-white"
+                          : "border border-gray-300 text-gray-600 hover:bg-gray-50"
                       }`}
                     >
                       {page}
                     </button>
                   );
                 })}
-                
+
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}

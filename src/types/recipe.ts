@@ -8,7 +8,7 @@ export interface Recipe {
   cookTime: number; // in minutes
   prepTime: number; // in minutes
   servings: number;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
+  difficulty: "Easy" | "Medium" | "Hard";
   rating: number;
   reviewCount: number;
   chef: {
@@ -62,8 +62,8 @@ export interface RecipeFilters {
 export interface RecipeSearchParams {
   query?: string;
   filters?: RecipeFilters;
-  sortBy?: 'rating' | 'cookTime' | 'createdAt' | 'title';
-  sortOrder?: 'asc' | 'desc';
+  sortBy?: "rating" | "cookTime" | "createdAt" | "title";
+  sortOrder?: "asc" | "desc";
   page?: number;
   limit?: number;
 }
@@ -91,7 +91,7 @@ export interface CategoryFilter extends FilterOption {
 // Component prop types
 export interface RecipeCardProps {
   recipe: Recipe;
-  variant?: 'default' | 'compact' | 'featured';
+  variant?: "default" | "compact" | "featured";
   showDescription?: boolean;
   onBookmark?: (recipeId: string) => void;
   onShare?: (recipe: Recipe) => void;
