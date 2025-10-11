@@ -36,7 +36,7 @@ export default function AboutSection() {
             About <span className="text-orange-600">Recipe Paradise</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We're passionate about bringing people together through the joy of
+            We&apos;re passionate about bringing people together through the joy of
             cooking and sharing amazing food experiences.
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function AboutSection() {
               <p>
                 Recipe Paradise was born from a simple idea: everyone deserves
                 access to delicious, home-cooked meals. Founded in 2020 by a
-                team of passionate chefs and food lovers, we've grown into a
+                team of passionate chefs and food lovers, we&apos;ve grown into a
                 thriving community of culinary enthusiasts from around the
                 world.
               </p>
@@ -61,7 +61,7 @@ export default function AboutSection() {
                 creates lasting memories.
               </p>
               <p>
-                Today, we're proud to offer thousands of tested recipes, cooking
+                Today, we&apos;re proud to offer thousands of tested recipes, cooking
                 tips, and culinary inspiration to help you create amazing meals
                 for your family and friends.
               </p>

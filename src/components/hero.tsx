@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Hero() {
   return (
     <section className="w-full py-16 px-4 bg-gradient-to-br from-orange-50 to-amber-50">
