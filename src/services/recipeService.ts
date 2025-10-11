@@ -458,7 +458,8 @@ export const recipeService = {
     if (params.sortBy) {
       const { sortBy, sortOrder = "desc" } = params;
       filteredRecipes.sort((a, b) => {
-        let aValue: any, bValue: any;
+        let aValue: string | number | Date;
+        let bValue: string | number | Date;
 
         switch (sortBy) {
           case "rating":

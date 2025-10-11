@@ -98,15 +98,6 @@ export default function RecipesPage() {
     setFilters(newFilters);
   };
 
-  const handleSortChange = (newSortBy: typeof sortBy) => {
-    if (newSortBy === sortBy) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortBy(newSortBy);
-      setSortOrder("desc");
-    }
-  };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });

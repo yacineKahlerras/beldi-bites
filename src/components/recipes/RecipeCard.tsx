@@ -13,7 +13,7 @@ export default function RecipeCard({
   onShare,
 }: RecipeCardProps) {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [imageError] = useState(false);
   const router = useRouter();
 
   const handleCardClick = () => {

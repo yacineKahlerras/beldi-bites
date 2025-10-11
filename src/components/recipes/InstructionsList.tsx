@@ -142,7 +142,7 @@ export default function InstructionsList({
 
       {/* Instructions List */}
       <div className="space-y-6">
-        {instructions.map((instruction, index) => {
+        {instructions.map((instruction) => {
           const stepNumber = instruction.step;
           const isCompleted = completedSteps.has(stepNumber);
           const isCurrent = currentStep === stepNumber;

@@ -13,7 +13,7 @@ export default function FilterSidebar({
 }: FilterSidebarProps) {
   const [localFilters, setLocalFilters] = useState<RecipeFilters>(filters);
 
-  const updateFilter = (key: keyof RecipeFilters, value: any) => {
+  const updateFilter = (key: keyof RecipeFilters, value: RecipeFilters[keyof RecipeFilters]) => {
     const newFilters = { ...localFilters, [key]: value };
     setLocalFilters(newFilters);
     onFilterChange(newFilters);
