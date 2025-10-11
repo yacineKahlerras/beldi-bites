@@ -10,9 +10,9 @@ import InstructionsList from "@/components/recipes/InstructionsList";
 import NutritionInfo from "@/components/recipes/NutritionInfo";
 
 interface RecipeDetailsPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
@@ -31,7 +31,8 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
     const fetchRecipe = async () => {
       try {
         setIsLoading(true);
-        const recipeData = await recipeService.getRecipeById(params.id);
+        const resolvedParams = await params;
+        const recipeData = await recipeService.getRecipeById(resolvedParams.id);
 
         if (recipeData) {
           setRecipe(recipeData);
@@ -49,7 +50,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
     };
 
     fetchRecipe();
-  }, [params.id]);
+  }, [params]);
 
   const handleBookmark = () => {
     setIsBookmarked(!isBookmarked);
