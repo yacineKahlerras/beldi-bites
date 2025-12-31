@@ -82,31 +82,75 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Drawer Overlay */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 pt-4 pb-4">
-            <div className="flex flex-col space-y-3">
-              {navOptions.map((option) => (
-                <a
-                  key={option.name}
-                  href={option.href}
-                  className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-orange-50"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {option.name}
-                </a>
-              ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
-                <button className="text-orange-600 hover:text-orange-700 px-3 py-2 text-base font-medium transition-colors duration-200 text-left">
-                  Sign In
-                </button>
-                <button className="bg-orange-600 text-white px-6 py-3 rounded-lg text-base font-medium hover:bg-orange-700 transition-colors duration-200 mx-3">
-                  Get Started
-                </button>
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-40 md:hidden transition-opacity duration-300"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+
+        {/* Mobile Drawer Side Menu */}
+        <div
+          className={`fixed top-0 right-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex flex-col h-full">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                  </svg>
+                </div>
+                <span className="text-lg font-bold">
+                  <span className="text-orange-600">Recipe</span>
+                  <span className="text-amber-600">Paradise</span>
+                </span>
+              </div>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Drawer Navigation Links */}
+            <div className="flex-1 overflow-y-auto py-6 px-4">
+              <div className="flex flex-col space-y-2">
+                {navOptions.map((option) => (
+                  <a
+                    key={option.name}
+                    href={option.href}
+                    className="text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-4 py-3 rounded-lg text-base font-medium transition-all duration-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {option.name}
+                  </a>
+                ))}
               </div>
             </div>
+
+            {/* Drawer Footer with CTA Buttons */}
+            <div className="border-t border-gray-200 p-6 space-y-3">
+              <button className="w-full text-orange-600 hover:text-orange-700 border border-orange-600 hover:bg-orange-50 px-4 py-3 rounded-lg text-base font-medium transition-all duration-200">
+                Sign In
+              </button>
+              <button className="w-full bg-orange-600 text-white px-4 py-3 rounded-lg text-base font-medium hover:bg-orange-700 transition-colors duration-200 shadow-lg">
+                Get Started
+              </button>
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
