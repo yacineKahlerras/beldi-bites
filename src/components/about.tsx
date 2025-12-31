@@ -33,7 +33,7 @@ export default function AboutSection() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            About <span className="text-orange-600">Recipe Paradise</span>
+            About <span className="text-orange-600">BeldiBites</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             We're passionate about bringing people together through the joy of
@@ -48,7 +48,7 @@ export default function AboutSection() {
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
             <div className="space-y-4 text-gray-600">
               <p>
-                Recipe Paradise was born from a simple idea: everyone deserves
+                BeldiBites was born from a simple idea: everyone deserves
                 access to delicious, home-cooked meals. Founded in 2020 by a
                 team of passionate chefs and food lovers, we've grown into a
                 thriving community of culinary enthusiasts from around the

@@ -30,8 +30,8 @@ export default function Nav() {
                 </svg>
               </div>
               <span className="text-2xl font-bold">
-                <span className="text-orange-600">Recipe</span>
-                <span className="text-amber-600">Paradise</span>
+                <span className="text-orange-600">Beldi</span>
+                <span className="text-amber-600">Bites</span>
               </span>
             </div>
           </div>
@@ -110,8 +110,8 @@ export default function Nav() {
                   </svg>
                 </div>
                 <span className="text-lg font-bold">
-                  <span className="text-orange-600">Recipe</span>
-                  <span className="text-amber-600">Paradise</span>
+                  <span className="text-orange-600">Beldi</span>
+                  <span className="text-amber-600">Bites</span>
                 </span>
               </div>
               <button

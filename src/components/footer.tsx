@@ -80,8 +80,8 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="text-2xl font-bold">
-                <span className="text-orange-400">Recipe</span>
-                <span className="text-amber-400">Paradise</span>
+                <span className="text-orange-400">Beldi</span>
+                <span className="text-amber-400">Bites</span>
               </span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
@@ -217,7 +217,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-center mt-8 pt-8 border-t border-gray-800">
             <p className="text-gray-400 text-sm">
-              © 2025 Recipe Paradise. All rights reserved. Made with ❤️ for food
+              © 2025 BeldiBites. All rights reserved. Made with ❤️ for food
               lovers everywhere.
             </p>
           </div>
