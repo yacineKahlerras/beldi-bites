@@ -86,13 +86,13 @@ const featuredRecipes = [
 const getDifficultyColor = (difficulty: string) => {
   switch (difficulty) {
     case "Easy":
-      return "bg-green-100 text-green-800";
+      return "bg-chart-3/20 text-chart-3";
     case "Medium":
-      return "bg-yellow-100 text-yellow-800";
+      return "bg-accent/20 text-accent";
     case "Hard":
-      return "bg-red-100 text-red-800";
+      return "bg-destructive/20 text-destructive";
     default:
-      return "bg-gray-100 text-gray-800";
+      return "bg-muted text-muted-foreground";
   }
 };
 
@@ -107,10 +107,10 @@ const StarRating = ({ rating }: { rating: number }) => {
           key={index}
           className={`w-4 h-4 ${
             index < fullStars
-              ? "text-yellow-400"
+              ? "text-accent"
               : index === fullStars && hasHalfStar
-              ? "text-yellow-400"
-              : "text-gray-300"
+              ? "text-accent"
+              : "text-muted"
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -124,13 +124,13 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const RecipeCard = ({ recipe }: { recipe: (typeof featuredRecipes)[0] }) => {
   return (
-    <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-orange-200">
+    <div className="group bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-border hover:border-primary/50">
       {/* Recipe Image */}
       <div className="relative h-64 overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-orange-200 to-amber-200 flex items-center justify-center">
-          <div className="text-center text-gray-600">
+        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
             <svg
-              className="mx-auto mb-2 w-16 h-16 text-orange-400"
+              className="mx-auto mb-2 w-16 h-16 text-primary/60"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -173,12 +173,12 @@ const RecipeCard = ({ recipe }: { recipe: (typeof featuredRecipes)[0] }) => {
       {/* Card Content */}
       <div className="p-6">
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200">
+        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
           {recipe.title}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
           {recipe.description}
         </p>
 
@@ -187,7 +187,7 @@ const RecipeCard = ({ recipe }: { recipe: (typeof featuredRecipes)[0] }) => {
           {recipe.tags.map((tag, index) => (
             <span
               key={index}
-              className="px-2 py-1 bg-orange-50 text-orange-600 text-xs font-medium rounded-md"
+              className="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-md"
             >
               {tag}
             </span>
@@ -198,10 +198,10 @@ const RecipeCard = ({ recipe }: { recipe: (typeof featuredRecipes)[0] }) => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <StarRating rating={recipe.rating} />
-            <span className="text-sm font-semibold text-gray-900">
+            <span className="text-sm font-semibold text-foreground">
               {recipe.rating}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-muted-foreground">
               ({recipe.reviews} reviews)
             </span>
           </div>
@@ -210,15 +210,15 @@ const RecipeCard = ({ recipe }: { recipe: (typeof featuredRecipes)[0] }) => {
         {/* Chef and CTA */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-amber-400 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground text-xs font-bold">
                 {recipe.chef.charAt(0)}
               </span>
             </div>
-            <span className="text-sm text-gray-600">by {recipe.chef}</span>
+            <span className="text-sm text-muted-foreground">by {recipe.chef}</span>
           </div>
 
-          <button className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200">
+          <button className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200">
             View Recipe
           </button>
         </div>
@@ -229,14 +229,14 @@ const RecipeCard = ({ recipe }: { recipe: (typeof featuredRecipes)[0] }) => {
 
 export default function FeaturedSection() {
   return (
-    <section className="py-16 px-4 bg-gray-50">
+    <section className="py-16 px-4 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Featured <span className="text-orange-600">Recipes</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Featured <span className="text-primary">Recipes</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover our most popular and delicious recipes, carefully curated
             by our community of passionate home cooks and professional chefs.
           </p>
@@ -253,7 +253,7 @@ export default function FeaturedSection() {
         <div className="text-center">
           <Link
             href="/recipes"
-            className="inline-block px-8 py-4 bg-white text-orange-600 font-semibold rounded-lg border-2 border-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-block px-8 py-4 bg-card text-primary font-semibold rounded-lg border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             View All Recipes
           </Link>

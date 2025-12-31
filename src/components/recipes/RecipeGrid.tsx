@@ -23,23 +23,23 @@ export default function RecipeGrid({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[...Array(6)].map((_, index) => (
           <div key={index} className="animate-pulse">
-            <div className="bg-gray-200 rounded-2xl h-64 mb-4"></div>
+            <div className="bg-muted rounded-2xl h-64 mb-4"></div>
             <div className="space-y-3">
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-4 bg-muted rounded w-3/4"></div>
               <div className="space-y-2">
-                <div className="h-3 bg-gray-200 rounded"></div>
-                <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-3 bg-muted rounded"></div>
+                <div className="h-3 bg-muted rounded w-5/6"></div>
               </div>
               <div className="flex space-x-2">
-                <div className="h-6 bg-gray-200 rounded-full w-16"></div>
-                <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+                <div className="h-6 bg-muted rounded-full w-16"></div>
+                <div className="h-6 bg-muted rounded-full w-20"></div>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className="h-8 w-8 bg-gray-200 rounded-full"></div>
-                  <div className="h-3 bg-gray-200 rounded w-20"></div>
+                  <div className="h-8 w-8 bg-muted rounded-full"></div>
+                  <div className="h-3 bg-muted rounded w-20"></div>
                 </div>
-                <div className="h-8 bg-gray-200 rounded w-24"></div>
+                <div className="h-8 bg-muted rounded w-24"></div>
               </div>
             </div>
           </div>
@@ -51,9 +51,9 @@ export default function RecipeGrid({
   if (recipes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+        <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mb-6">
           <svg
-            className="w-12 h-12 text-gray-400"
+            className="w-12 h-12 text-muted-foreground"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -66,18 +66,18 @@ export default function RecipeGrid({
             />
           </svg>
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+        <h3 className="text-xl font-semibold text-foreground mb-2">
           No recipes found
         </h3>
-        <p className="text-gray-600 max-w-md">
+        <p className="text-muted-foreground max-w-md">
           We couldn't find any recipes matching your criteria. Try adjusting
           your search or filters to discover more delicious options.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-4">
-          <button className="px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transform hover:scale-105 transition-all duration-200">
+          <button className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transform hover:scale-105 transition-all duration-200">
             Browse All Recipes
           </button>
-          <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-orange-500 hover:text-orange-600 transition-all duration-200">
+          <button className="px-6 py-3 border-2 border-border text-foreground font-semibold rounded-lg hover:border-primary hover:text-primary transition-all duration-200">
             Clear Filters
           </button>
         </div>
@@ -118,26 +118,26 @@ export function FeaturedRecipeGrid({
         {[...Array(3)].map((_, index) => (
           <div
             key={index}
-            className="animate-pulse flex flex-col lg:flex-row bg-white rounded-2xl shadow-lg overflow-hidden"
+            className="animate-pulse flex flex-col lg:flex-row bg-card rounded-2xl shadow-lg overflow-hidden"
           >
-            <div className="lg:w-1/2 h-64 lg:h-auto bg-gray-200"></div>
+            <div className="lg:w-1/2 h-64 lg:h-auto bg-muted"></div>
             <div className="lg:w-1/2 p-6 space-y-4">
-              <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-6 bg-muted rounded w-3/4"></div>
               <div className="space-y-2">
-                <div className="h-4 bg-gray-200 rounded"></div>
-                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+                <div className="h-4 bg-muted rounded"></div>
+                <div className="h-4 bg-muted rounded w-5/6"></div>
+                <div className="h-4 bg-muted rounded w-4/5"></div>
               </div>
               <div className="flex space-x-2">
-                <div className="h-6 bg-gray-200 rounded-full w-16"></div>
-                <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+                <div className="h-6 bg-muted rounded-full w-16"></div>
+                <div className="h-6 bg-muted rounded-full w-20"></div>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className="h-8 w-8 bg-gray-200 rounded-full"></div>
-                  <div className="h-4 bg-gray-200 rounded w-24"></div>
+                  <div className="h-8 w-8 bg-muted rounded-full"></div>
+                  <div className="h-4 bg-muted rounded w-24"></div>
                 </div>
-                <div className="h-10 bg-gray-200 rounded w-32"></div>
+                <div className="h-10 bg-muted rounded w-32"></div>
               </div>
             </div>
           </div>
@@ -149,9 +149,9 @@ export function FeaturedRecipeGrid({
   if (recipes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+        <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mb-6">
           <svg
-            className="w-12 h-12 text-gray-400"
+            className="w-12 h-12 text-muted-foreground"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -164,10 +164,10 @@ export function FeaturedRecipeGrid({
             />
           </svg>
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+        <h3 className="text-xl font-semibold text-foreground mb-2">
           No featured recipes
         </h3>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Check back later for our latest featured recipes!
         </p>
       </div>

@@ -13,16 +13,16 @@ export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-100">
+    <nav className="bg-card shadow-lg border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
             <div className="flex items-center space-x-3">
               {/* Recipe icon */}
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-primary-foreground"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -30,8 +30,8 @@ export default function Nav() {
                 </svg>
               </div>
               <span className="text-2xl font-bold">
-                <span className="text-orange-600">Beldi</span>
-                <span className="text-amber-600">Bites</span>
+                <span className="text-primary">Beldi</span>
+                <span className="text-accent">Bites</span>
               </span>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function Nav() {
               <a
                 key={option.name}
                 href={option.href}
-                className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 hover:bg-orange-50"
+                className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 hover:bg-secondary"
               >
                 {option.name}
               </a>
@@ -51,10 +51,10 @@ export default function Nav() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-orange-600 hover:text-orange-700 px-4 py-2 text-sm font-medium transition-colors duration-200">
+            <button className="text-primary hover:text-primary/80 px-4 py-2 text-sm font-medium transition-colors duration-200">
               Sign In
             </button>
-            <button className="bg-orange-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-orange-700 transition-colors duration-200">
+            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors duration-200">
               Get Started
             </button>
           </div>
@@ -63,7 +63,7 @@ export default function Nav() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-orange-600 focus:outline-none focus:text-orange-600 p-2"
+              className="text-foreground hover:text-primary focus:outline-none focus:text-primary p-2"
             >
               <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                 {isMenuOpen ? (
@@ -92,17 +92,17 @@ export default function Nav() {
 
         {/* Mobile Drawer Side Menu */}
         <div
-          className={`max-w-full fixed top-0 right-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+          className={`max-w-full fixed top-0 right-0 h-full w-80 bg-card z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex flex-col h-full">
             {/* Drawer Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-6 border-b border-border">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
                   <svg
-                    className="w-5 h-5 text-white"
+                    className="w-5 h-5 text-primary-foreground"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -110,13 +110,13 @@ export default function Nav() {
                   </svg>
                 </div>
                 <span className="text-lg font-bold">
-                  <span className="text-orange-600">Beldi</span>
-                  <span className="text-amber-600">Bites</span>
+                  <span className="text-primary">Beldi</span>
+                  <span className="text-accent">Bites</span>
                 </span>
               </div>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="text-muted-foreground hover:text-foreground focus:outline-none"
               >
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -131,7 +131,7 @@ export default function Nav() {
                   <a
                     key={option.name}
                     href={option.href}
-                    className="text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-4 py-3 rounded-lg text-base font-medium transition-all duration-200"
+                    className="text-foreground hover:text-primary hover:bg-secondary px-4 py-3 rounded-lg text-base font-medium transition-all duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {option.name}
@@ -141,11 +141,11 @@ export default function Nav() {
             </div>
 
             {/* Drawer Footer with CTA Buttons */}
-            <div className="border-t border-gray-200 p-6 space-y-3">
-              <button className="w-full text-orange-600 hover:text-orange-700 border border-orange-600 hover:bg-orange-50 px-4 py-3 rounded-lg text-base font-medium transition-all duration-200">
+            <div className="border-t border-border p-6 space-y-3">
+              <button className="w-full text-primary hover:text-primary/80 border border-primary hover:bg-secondary px-4 py-3 rounded-lg text-base font-medium transition-all duration-200">
                 Sign In
               </button>
-              <button className="w-full bg-orange-600 text-white px-4 py-3 rounded-lg text-base font-medium hover:bg-orange-700 transition-colors duration-200 shadow-lg">
+              <button className="w-full bg-primary text-primary-foreground px-4 py-3 rounded-lg text-base font-medium hover:bg-primary/90 transition-colors duration-200 shadow-lg">
                 Get Started
               </button>
             </div>

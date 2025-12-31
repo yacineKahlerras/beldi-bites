@@ -36,13 +36,13 @@ export default function RecipeCard({
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Easy":
-        return "bg-green-100 text-green-800";
+        return "bg-chart-3/20 text-chart-3";
       case "Medium":
-        return "bg-yellow-100 text-yellow-800";
+        return "bg-accent/20 text-accent";
       case "Hard":
-        return "bg-red-100 text-red-800";
+        return "bg-destructive/20 text-destructive";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-muted-foreground";
     }
   };
 
@@ -57,10 +57,10 @@ export default function RecipeCard({
             key={index}
             className={`w-4 h-4 ${
               index < fullStars
-                ? "text-yellow-400"
+                ? "text-accent"
                 : index === fullStars && hasHalfStar
-                ? "text-yellow-400"
-                : "text-gray-300"
+                ? "text-accent"
+                : "text-muted"
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -73,8 +73,8 @@ export default function RecipeCard({
   };
 
   const cardClasses = `
-    group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden 
-    border border-gray-100 hover:border-orange-200 cursor-pointer transform hover:-translate-y-1
+    group bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden
+    border border-border hover:border-primary/50 cursor-pointer transform hover:-translate-y-1
     ${variant === "compact" ? "max-w-sm" : ""}
     ${variant === "featured" ? "lg:flex lg:max-w-4xl" : ""}
   `;
@@ -95,10 +95,10 @@ export default function RecipeCard({
       {/* Recipe Image */}
       <div className={imageClasses}>
         {!imageError ? (
-          <div className="w-full h-full bg-gradient-to-br from-orange-200 to-amber-200 flex items-center justify-center">
-            <div className="text-center text-gray-600">
+          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+            <div className="text-center text-muted-foreground">
               <svg
-                className="mx-auto mb-2 w-16 h-16 text-orange-400"
+                className="mx-auto mb-2 w-16 h-16 text-primary"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -108,8 +108,8 @@ export default function RecipeCard({
             </div>
           </div>
         ) : (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <div className="text-center text-gray-500">
+          <div className="w-full h-full bg-secondary flex items-center justify-center">
+            <div className="text-center text-muted-foreground">
               <svg
                 className="mx-auto mb-2 w-12 h-12"
                 fill="none"
@@ -144,8 +144,8 @@ export default function RecipeCard({
             onClick={handleBookmark}
             className={`p-2 rounded-full backdrop-blur-sm transition-all duration-200 ${
               isBookmarked
-                ? "bg-red-500 text-white"
-                : "bg-white bg-opacity-80 text-gray-700 hover:bg-opacity-100"
+                ? "bg-destructive text-destructive-foreground"
+                : "bg-card/80 text-foreground hover:bg-card"
             }`}
           >
             <svg
@@ -165,7 +165,7 @@ export default function RecipeCard({
 
           <button
             onClick={handleShare}
-            className="p-2 rounded-full bg-white bg-opacity-80 text-gray-700 hover:bg-opacity-100 backdrop-blur-sm transition-all duration-200"
+            className="p-2 rounded-full bg-card/80 text-foreground hover:bg-card backdrop-blur-sm transition-all duration-200"
           >
             <svg
               className="w-4 h-4"
@@ -185,7 +185,7 @@ export default function RecipeCard({
 
         {/* Cook time badge */}
         <div className="absolute bottom-4 left-4">
-          <span className="bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center">
+          <span className="bg-background/70 text-foreground px-3 py-1 rounded-full text-xs font-medium flex items-center backdrop-blur-sm">
             <svg
               className="w-3 h-3 mr-1"
               fill="currentColor"
@@ -211,13 +211,13 @@ export default function RecipeCard({
         }`}
       >
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200 line-clamp-2">
+        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">
           {recipe.title}
         </h3>
 
         {/* Description */}
         {showDescription && (
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
             {recipe.description}
           </p>
         )}
@@ -229,13 +229,13 @@ export default function RecipeCard({
             .map((tag, index) => (
               <span
                 key={index}
-                className="px-2 py-1 bg-orange-50 text-orange-600 text-xs font-medium rounded-md"
+                className="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-md"
               >
                 {tag}
               </span>
             ))}
           {recipe.tags.length > (variant === "compact" ? 2 : 3) && (
-            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-md">
+            <span className="px-2 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-md">
               +{recipe.tags.length - (variant === "compact" ? 2 : 3)} more
             </span>
           )}
@@ -245,15 +245,15 @@ export default function RecipeCard({
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <StarRating rating={recipe.rating} />
-            <span className="text-sm font-semibold text-gray-900">
+            <span className="text-sm font-semibold text-foreground">
               {recipe.rating}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-muted-foreground">
               ({recipe.reviewCount})
             </span>
           </div>
 
-          <div className="flex items-center space-x-4 text-sm text-gray-500">
+          <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <div className="flex items-center space-x-1">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -266,19 +266,19 @@ export default function RecipeCard({
         {/* Chef and CTA */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-amber-400 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground text-xs font-bold">
                 {recipe.chef.name.charAt(0)}
               </span>
             </div>
             <div>
               <div className="flex items-center space-x-1">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">
                   by {recipe.chef.name}
                 </span>
                 {recipe.chef.verified && (
                   <svg
-                    className="w-4 h-4 text-blue-500"
+                    className="w-4 h-4 text-chart-1"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -290,13 +290,13 @@ export default function RecipeCard({
                   </svg>
                 )}
               </div>
-              <span className="text-xs text-gray-500">{recipe.cuisine}</span>
+              <span className="text-xs text-muted-foreground">{recipe.cuisine}</span>
             </div>
           </div>
 
           <Link
             href={`/recipes/${recipe.id}`}
-            className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200 inline-block text-center"
+            className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200 inline-block text-center"
             onClick={(e) => e.stopPropagation()}
           >
             View Recipe

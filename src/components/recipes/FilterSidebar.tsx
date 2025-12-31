@@ -33,8 +33,8 @@ export default function FilterSidebar({
   );
 
   const sidebarClasses = `
-    fixed lg:relative top-0 left-0 h-full lg:h-auto w-80 lg:w-auto bg-white lg:bg-transparent 
-    border-r lg:border-r-0 border-gray-200 z-40 transform transition-transform duration-300
+    fixed lg:relative top-0 left-0 h-full lg:h-auto w-80 lg:w-auto bg-card lg:bg-transparent
+    border-r lg:border-r-0 border-border z-40 transform transition-transform duration-300
     ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
     lg:block overflow-y-auto
   `;
@@ -54,10 +54,10 @@ export default function FilterSidebar({
         <div className="p-6 lg:p-0">
           {/* Header */}
           <div className="flex items-center justify-between mb-6 lg:hidden">
-            <h2 className="text-xl font-bold text-gray-900">Filters</h2>
+            <h2 className="text-xl font-bold text-foreground">Filters</h2>
             <button
               onClick={onToggle}
-              className="p-2 text-gray-500 hover:text-gray-700"
+              className="p-2 text-muted-foreground hover:text-foreground"
             >
               <svg
                 className="w-6 h-6"
@@ -76,11 +76,11 @@ export default function FilterSidebar({
           </div>
 
           <div className="hidden lg:flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900">Filters</h2>
+            <h2 className="text-xl font-bold text-foreground">Filters</h2>
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                className="text-sm text-primary hover:text-primary/80 font-medium"
               >
                 Clear All
               </button>
@@ -89,7 +89,7 @@ export default function FilterSidebar({
 
           {/* Categories */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Categories
             </h3>
             <div className="space-y-2">
@@ -99,8 +99,8 @@ export default function FilterSidebar({
                   onClick={() => updateFilter("category", category.value)}
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
                     localFilters.category === category.value
-                      ? "bg-orange-50 text-orange-700 border border-orange-200"
-                      : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      ? "bg-primary/20 text-primary border border-primary"
+                      : "hover:bg-secondary text-foreground border border-transparent"
                   }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -108,7 +108,7 @@ export default function FilterSidebar({
                     <span className="font-medium">{category.label}</span>
                   </div>
                   {category.count !== undefined && (
-                    <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                    <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded-full">
                       {category.count}
                     </span>
                   )}
@@ -119,7 +119,7 @@ export default function FilterSidebar({
 
           {/* Cuisines */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Cuisine
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -129,13 +129,13 @@ export default function FilterSidebar({
                   onClick={() => updateFilter("cuisine", cuisine.value)}
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
                     localFilters.cuisine === cuisine.value
-                      ? "bg-orange-50 text-orange-700 border border-orange-200"
-                      : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      ? "bg-primary/20 text-primary border border-primary"
+                      : "hover:bg-secondary text-foreground border border-transparent"
                   }`}
                 >
                   <span className="font-medium">{cuisine.label}</span>
                   {cuisine.count !== undefined && (
-                    <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                    <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded-full">
                       {cuisine.count}
                     </span>
                   )}
@@ -146,7 +146,7 @@ export default function FilterSidebar({
 
           {/* Difficulty */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Difficulty
             </h3>
             <div className="space-y-2">
@@ -161,18 +161,18 @@ export default function FilterSidebar({
                   }
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
                     localFilters.difficulty === difficulty
-                      ? "bg-orange-50 text-orange-700 border border-orange-200"
-                      : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      ? "bg-primary/20 text-primary border border-primary"
+                      : "hover:bg-secondary text-foreground border border-transparent"
                   }`}
                 >
                   <div className="flex items-center space-x-3">
                     <span
                       className={`w-3 h-3 rounded-full ${
                         difficulty === "Easy"
-                          ? "bg-green-400"
+                          ? "bg-chart-3"
                           : difficulty === "Medium"
-                          ? "bg-yellow-400"
-                          : "bg-red-400"
+                          ? "bg-accent"
+                          : "bg-destructive"
                       }`}
                     />
                     <span className="font-medium">{difficulty}</span>
@@ -184,7 +184,7 @@ export default function FilterSidebar({
 
           {/* Cook Time */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Max Cook Time
             </h3>
             <div className="space-y-2">
@@ -199,13 +199,13 @@ export default function FilterSidebar({
                   }
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
                     localFilters.maxCookTime === time
-                      ? "bg-orange-50 text-orange-700 border border-orange-200"
-                      : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      ? "bg-primary/20 text-primary border border-primary"
+                      : "hover:bg-secondary text-foreground border border-transparent"
                   }`}
                 >
                   <div className="flex items-center space-x-3">
                     <svg
-                      className="w-4 h-4 text-gray-400"
+                      className="w-4 h-4 text-muted-foreground"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -228,7 +228,7 @@ export default function FilterSidebar({
 
           {/* Rating */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               Minimum Rating
             </h3>
             <div className="space-y-2">
@@ -243,8 +243,8 @@ export default function FilterSidebar({
                   }
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
                     localFilters.rating === rating
-                      ? "bg-orange-50 text-orange-700 border border-orange-200"
-                      : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      ? "bg-primary/20 text-primary border border-primary"
+                      : "hover:bg-secondary text-foreground border border-transparent"
                   }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -253,7 +253,7 @@ export default function FilterSidebar({
                         <svg
                           key={i}
                           className={`w-4 h-4 ${
-                            i < rating ? "text-yellow-400" : "text-gray-300"
+                            i < rating ? "text-accent" : "text-muted"
                           }`}
                           fill="currentColor"
                           viewBox="0 0 20 20"
@@ -274,7 +274,7 @@ export default function FilterSidebar({
             <div className="lg:hidden">
               <button
                 onClick={clearFilters}
-                className="w-full py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                className="w-full py-3 bg-secondary text-foreground font-medium rounded-lg hover:bg-secondary/80 transition-colors duration-200"
               >
                 Clear All Filters
               </button>

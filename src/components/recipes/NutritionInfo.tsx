@@ -26,9 +26,9 @@ export default function NutritionInfo({
       name: "Calories",
       value: perServing.calories,
       unit: "",
-      color: "text-red-600",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
+      color: "text-destructive",
+      bgColor: "bg-destructive/20",
+      borderColor: "border-destructive/30",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path
@@ -43,9 +43,9 @@ export default function NutritionInfo({
       name: "Protein",
       value: perServing.protein,
       unit: "g",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
+      color: "text-chart-1",
+      bgColor: "bg-chart-1/20",
+      borderColor: "border-chart-1/30",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -56,9 +56,9 @@ export default function NutritionInfo({
       name: "Carbs",
       value: perServing.carbs,
       unit: "g",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
+      color: "text-primary",
+      bgColor: "bg-primary/20",
+      borderColor: "border-primary/30",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
@@ -69,9 +69,9 @@ export default function NutritionInfo({
       name: "Fat",
       value: perServing.fat,
       unit: "g",
-      color: "text-yellow-600",
-      bgColor: "bg-yellow-50",
-      borderColor: "border-yellow-200",
+      color: "text-accent",
+      bgColor: "bg-accent/20",
+      borderColor: "border-accent/30",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path
@@ -86,9 +86,9 @@ export default function NutritionInfo({
       name: "Fiber",
       value: perServing.fiber,
       unit: "g",
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
+      color: "text-chart-3",
+      bgColor: "bg-chart-3/20",
+      borderColor: "border-chart-3/30",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path
@@ -103,9 +103,9 @@ export default function NutritionInfo({
       name: "Sugar",
       value: perServing.sugar,
       unit: "g",
-      color: "text-pink-600",
-      bgColor: "bg-pink-50",
-      borderColor: "border-pink-200",
+      color: "text-chart-2",
+      bgColor: "bg-chart-2/20",
+      borderColor: "border-chart-2/30",
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
@@ -130,21 +130,21 @@ export default function NutritionInfo({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
+    <div className="bg-card rounded-2xl shadow-lg p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Nutrition Facts</h2>
-        <div className="text-sm text-gray-600">
+        <h2 className="text-2xl font-bold text-foreground">Nutrition Facts</h2>
+        <div className="text-sm text-muted-foreground">
           Per serving ({servings} servings total)
         </div>
       </div>
 
       {/* Calories Highlight */}
-      <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl border border-red-100">
+      <div className="mb-6 p-4 bg-gradient-to-r from-destructive/20 to-primary/20 rounded-xl border border-destructive/30">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 bg-destructive rounded-full flex items-center justify-center">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-background"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -156,17 +156,17 @@ export default function NutritionInfo({
               </svg>
             </div>
             <div>
-              <div className="text-3xl font-bold text-red-600">
+              <div className="text-3xl font-bold text-destructive">
                 {perServing.calories}
               </div>
-              <div className="text-sm text-gray-600">Calories per serving</div>
+              <div className="text-sm text-muted-foreground">Calories per serving</div>
             </div>
           </div>
           <div className="text-right">
-            <div className="text-lg font-semibold text-gray-700">
+            <div className="text-lg font-semibold text-foreground">
               {getDailyValuePercentage("Calories", perServing.calories)}%
             </div>
-            <div className="text-sm text-gray-500">Daily Value</div>
+            <div className="text-sm text-muted-foreground">Daily Value</div>
           </div>
         </div>
       </div>
@@ -180,14 +180,14 @@ export default function NutritionInfo({
           >
             <div className="flex items-center space-x-3 mb-2">
               <div className={`${item.color}`}>{item.icon}</div>
-              <span className="font-semibold text-gray-800">{item.name}</span>
+              <span className="font-semibold text-foreground">{item.name}</span>
             </div>
             <div className="flex items-baseline justify-between">
               <span className={`text-2xl font-bold ${item.color}`}>
                 {item.value}
                 {item.unit}
               </span>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-muted-foreground">
                 {getDailyValuePercentage(item.name, item.value)}%
               </span>
             </div>
@@ -197,15 +197,15 @@ export default function NutritionInfo({
 
       {/* Macronutrient Breakdown */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-4">
           Macronutrient Breakdown
         </h3>
 
         {/* Visual Pie Chart Representation */}
         <div className="mb-4">
-          <div className="flex h-4 rounded-full overflow-hidden bg-gray-200">
+          <div className="flex h-4 rounded-full overflow-hidden bg-muted">
             <div
-              className="bg-blue-500"
+              className="bg-chart-1"
               style={{
                 width: `${
                   ((perServing.protein * 4) / perServing.calories) * 100
@@ -216,7 +216,7 @@ export default function NutritionInfo({
               )}%`}
             />
             <div
-              className="bg-orange-500"
+              className="bg-primary"
               style={{
                 width: `${
                   ((perServing.carbs * 4) / perServing.calories) * 100
@@ -227,7 +227,7 @@ export default function NutritionInfo({
               )}%`}
             />
             <div
-              className="bg-yellow-500"
+              className="bg-accent"
               style={{
                 width: `${((perServing.fat * 9) / perServing.calories) * 100}%`,
               }}
@@ -239,9 +239,9 @@ export default function NutritionInfo({
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap gap-4 text-sm">
+        <div className="flex flex-wrap gap-4 text-sm text-foreground">
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-chart-1 rounded-full"></div>
             <span>
               Protein:{" "}
               {Math.round(
@@ -251,7 +251,7 @@ export default function NutritionInfo({
             </span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-primary rounded-full"></div>
             <span>
               Carbs:{" "}
               {Math.round(((perServing.carbs * 4) / perServing.calories) * 100)}
@@ -259,7 +259,7 @@ export default function NutritionInfo({
             </span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-accent rounded-full"></div>
             <span>
               Fat:{" "}
               {Math.round(((perServing.fat * 9) / perServing.calories) * 100)}%
@@ -269,7 +269,7 @@ export default function NutritionInfo({
       </div>
 
       {/* Disclaimer */}
-      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+      <div className="text-xs text-muted-foreground bg-secondary p-3 rounded-lg">
         <p className="mb-1">
           <strong>Disclaimer:</strong> Nutritional values are estimates and may
           vary depending on preparation method and ingredient brands.

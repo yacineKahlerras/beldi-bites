@@ -28,14 +28,14 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section className="py-16 px-4 bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            About <span className="text-orange-600">BeldiBites</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            About <span className="text-primary">BeldiBites</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             We're passionate about bringing people together through the joy of
             cooking and sharing amazing food experiences.
           </p>
@@ -45,8 +45,8 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Story Content */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
-            <div className="space-y-4 text-gray-600">
+            <h3 className="text-2xl font-bold text-foreground mb-6">Our Story</h3>
+            <div className="space-y-4 text-muted-foreground">
               <p>
                 BeldiBites was born from a simple idea: everyone deserves
                 access to delicious, home-cooked meals. Founded in 2020 by a
@@ -70,9 +70,9 @@ export default function AboutSection() {
             {/* Mission Points */}
             <div className="mt-8 space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center mt-1">
                   <svg
-                    className="w-3 h-3 text-orange-600"
+                    className="w-3 h-3 text-primary"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -84,8 +84,8 @@ export default function AboutSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Quality First</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-foreground">Quality First</h4>
+                  <p className="text-muted-foreground text-sm">
                     Every recipe is tested and refined by our team of
                     professional chefs
                   </p>
@@ -93,9 +93,9 @@ export default function AboutSection() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center mt-1">
                   <svg
-                    className="w-3 h-3 text-orange-600"
+                    className="w-3 h-3 text-primary"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -107,10 +107,10 @@ export default function AboutSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">
+                  <h4 className="font-semibold text-foreground">
                     Community Driven
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Built by food lovers, for food lovers - we value every voice
                     in our community
                   </p>
@@ -118,9 +118,9 @@ export default function AboutSection() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center mt-1">
                   <svg
-                    className="w-3 h-3 text-orange-600"
+                    className="w-3 h-3 text-primary"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -132,10 +132,10 @@ export default function AboutSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">
+                  <h4 className="font-semibold text-foreground">
                     Always Learning
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Constantly evolving with new techniques, ingredients, and
                     global flavors
                   </p>
@@ -146,22 +146,22 @@ export default function AboutSection() {
 
           {/* Visual Content */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-orange-100 to-amber-100 rounded-3xl p-8 h-96 flex items-center justify-center">
-              <div className="text-center text-gray-600">
+            <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-8 h-96 flex items-center justify-center border border-border">
+              <div className="text-center text-muted-foreground">
                 <svg
-                  className="mx-auto mb-4 w-32 h-32 text-orange-400"
+                  className="mx-auto mb-4 w-32 h-32 text-primary/60"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-2xl font-bold text-gray-700">Our Kitchen</p>
+                <p className="text-2xl font-bold text-foreground">Our Kitchen</p>
                 <p className="text-lg opacity-75">Where magic happens</p>
               </div>
             </div>
             {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-300 rounded-full opacity-60"></div>
-            <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-orange-300 rounded-full opacity-60"></div>
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-accent/30 rounded-full opacity-60"></div>
+            <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-primary/30 rounded-full opacity-60"></div>
           </div>
         </div>
 
@@ -169,20 +169,20 @@ export default function AboutSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-600 mb-2">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
                 {stat.number}
               </div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div className="text-muted-foreground font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
 
         {/* Team Section */}
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-2xl font-bold text-foreground mb-4">
             Meet Our Team
           </h3>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Our diverse team of culinary experts, nutritionists, and food
             enthusiasts work together to bring you the best recipes and cooking
             experiences.
@@ -192,18 +192,18 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-center group">
-              <div className="w-24 h-24 bg-gradient-to-br from-orange-400 to-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-200">
-                <span className="text-white text-2xl font-bold">
+              <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-200">
+                <span className="text-primary-foreground text-2xl font-bold">
                   {member.avatar}
                 </span>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-2">
+              <h4 className="text-xl font-bold text-foreground mb-2">
                 {member.name}
               </h4>
-              <p className="text-orange-600 font-semibold mb-2">
+              <p className="text-primary font-semibold mb-2">
                 {member.role}
               </p>
-              <p className="text-gray-600 text-sm">{member.description}</p>
+              <p className="text-muted-foreground text-sm">{member.description}</p>
             </div>
           ))}
         </div>

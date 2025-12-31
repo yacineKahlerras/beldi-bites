@@ -50,12 +50,12 @@ export default function InstructionsList({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
+    <div className="bg-card rounded-2xl shadow-lg p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Instructions</h2>
+        <h2 className="text-2xl font-bold text-foreground">Instructions</h2>
 
         {/* Cooking Times */}
-        <div className="flex items-center space-x-4 text-sm text-gray-600">
+        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
           <div className="flex items-center space-x-1">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
@@ -76,22 +76,22 @@ export default function InstructionsList({
       </div>
 
       {/* Progress Overview */}
-      <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+      <div className="mb-6 p-4 bg-secondary rounded-lg">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-medium text-gray-700">
+          <span className="text-sm font-medium text-foreground">
             Progress: {completedSteps.size}/{instructions.length} steps
             completed
           </span>
           <button
             onClick={resetProgress}
-            className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+            className="text-sm text-primary hover:text-primary/80 font-medium"
           >
             Reset
           </button>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-muted rounded-full h-2">
           <div
-            className="bg-orange-500 h-2 rounded-full transition-all duration-300"
+            className="bg-primary h-2 rounded-full transition-all duration-300"
             style={{
               width: `${(completedSteps.size / instructions.length) * 100}%`,
             }}
@@ -112,10 +112,10 @@ export default function InstructionsList({
               onClick={() => goToStep(stepNumber)}
               className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 ${
                 isCompleted
-                  ? "bg-green-500 text-white"
+                  ? "bg-chart-3 text-background"
                   : isCurrent
-                  ? "bg-orange-500 text-white ring-4 ring-orange-100"
-                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  ? "bg-primary text-primary-foreground ring-4 ring-primary/20"
+                  : "bg-muted text-muted-foreground hover:bg-secondary"
               }`}
             >
               {isCompleted ? (
@@ -152,10 +152,10 @@ export default function InstructionsList({
               key={stepNumber}
               className={`relative p-6 rounded-xl border-2 transition-all duration-300 ${
                 isCompleted
-                  ? "bg-green-50 border-green-200"
+                  ? "bg-chart-3/20 border-chart-3/30"
                   : isCurrent
-                  ? "bg-orange-50 border-orange-200 ring-2 ring-orange-100"
-                  : "bg-gray-50 border-gray-200"
+                  ? "bg-primary/20 border-primary/30 ring-2 ring-primary/20"
+                  : "bg-secondary border-border"
               }`}
             >
               {/* Step Number & Completion Toggle */}
@@ -164,10 +164,10 @@ export default function InstructionsList({
                   onClick={() => toggleStep(stepNumber)}
                   className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-200 ${
                     isCompleted
-                      ? "bg-green-500 text-white"
+                      ? "bg-chart-3 text-background"
                       : isCurrent
-                      ? "bg-orange-500 text-white"
-                      : "bg-white border-2 border-gray-300 text-gray-600 hover:border-orange-300"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-card border-2 border-border text-muted-foreground hover:border-primary/50"
                   }`}
                 >
                   {isCompleted ? (
@@ -194,8 +194,8 @@ export default function InstructionsList({
                   <p
                     className={`text-lg leading-relaxed ${
                       isCompleted
-                        ? "text-green-800 line-through opacity-75"
-                        : "text-gray-900"
+                        ? "text-chart-3 line-through opacity-75"
+                        : "text-foreground"
                     }`}
                   >
                     {instruction.description}
@@ -205,7 +205,7 @@ export default function InstructionsList({
                   {instruction.time && (
                     <div className="mt-3 flex items-center space-x-2">
                       <svg
-                        className="w-4 h-4 text-gray-500"
+                        className="w-4 h-4 text-muted-foreground"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -215,7 +215,7 @@ export default function InstructionsList({
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span className="text-sm font-medium text-gray-600">
+                      <span className="text-sm font-medium text-muted-foreground">
                         {formatTime(instruction.time)}
                       </span>
                     </div>
@@ -224,10 +224,10 @@ export default function InstructionsList({
                   {/* Step Image Placeholder */}
                   {instruction.image && (
                     <div className="mt-4">
-                      <div className="w-full h-48 bg-gradient-to-br from-orange-100 to-amber-100 rounded-lg flex items-center justify-center">
-                        <div className="text-center text-gray-600">
+                      <div className="w-full h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
+                        <div className="text-center text-muted-foreground">
                           <svg
-                            className="mx-auto mb-2 w-12 h-12 text-orange-400"
+                            className="mx-auto mb-2 w-12 h-12 text-primary"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
@@ -249,7 +249,7 @@ export default function InstructionsList({
 
               {/* Current Step Indicator */}
               {isCurrent && !isCompleted && (
-                <div className="absolute -left-1 top-6 w-1 h-12 bg-orange-500 rounded-full"></div>
+                <div className="absolute -left-1 top-6 w-1 h-12 bg-primary rounded-full"></div>
               )}
             </div>
           );
@@ -261,7 +261,7 @@ export default function InstructionsList({
         <button
           onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
           disabled={currentStep === 1}
-          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-600 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="flex items-center space-x-2 px-4 py-2 border border-border text-foreground rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary"
         >
           <svg
             className="w-4 h-4"
@@ -280,8 +280,8 @@ export default function InstructionsList({
         </button>
 
         <div className="text-center">
-          <div className="text-sm text-gray-600 mb-1">Step</div>
-          <div className="text-2xl font-bold text-orange-600">
+          <div className="text-sm text-muted-foreground mb-1">Step</div>
+          <div className="text-2xl font-bold text-primary">
             {currentStep} / {instructions.length}
           </div>
         </div>
@@ -291,7 +291,7 @@ export default function InstructionsList({
             setCurrentStep(Math.min(instructions.length, currentStep + 1))
           }
           disabled={currentStep === instructions.length}
-          className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-orange-700"
+          className="flex items-center space-x-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90"
         >
           <span>Next Step</span>
           <svg

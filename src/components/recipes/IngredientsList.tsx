@@ -77,21 +77,21 @@ export default function IngredientsList({
   }, {} as Record<string, Ingredient[]>);
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
+    <div className="bg-card rounded-2xl shadow-lg p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Ingredients</h2>
+        <h2 className="text-2xl font-bold text-foreground">Ingredients</h2>
 
         {/* Servings Adjuster */}
-        <div className="flex items-center space-x-3 bg-gray-50 rounded-lg p-2">
-          <span className="text-sm font-medium text-gray-700">Servings:</span>
+        <div className="flex items-center space-x-3 bg-secondary rounded-lg p-2">
+          <span className="text-sm font-medium text-foreground">Servings:</span>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => handleServingsChange(servings - 1)}
-              className="w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center hover:bg-secondary transition-colors"
               disabled={servings <= 1}
             >
               <svg
-                className="w-4 h-4 text-gray-600"
+                className="w-4 h-4 text-muted-foreground"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -104,15 +104,15 @@ export default function IngredientsList({
                 />
               </svg>
             </button>
-            <span className="w-8 text-center font-semibold text-gray-900">
+            <span className="w-8 text-center font-semibold text-foreground">
               {servings}
             </span>
             <button
               onClick={() => handleServingsChange(servings + 1)}
-              className="w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center hover:bg-secondary transition-colors"
             >
               <svg
-                className="w-4 h-4 text-gray-600"
+                className="w-4 h-4 text-muted-foreground"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -131,7 +131,7 @@ export default function IngredientsList({
 
       {/* Shopping List Button */}
       <div className="mb-6">
-        <button className="flex items-center space-x-2 px-4 py-2 bg-orange-50 text-orange-600 border border-orange-200 rounded-lg hover:bg-orange-100 transition-colors">
+        <button className="flex items-center space-x-2 px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-lg hover:bg-primary/30 transition-colors">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -154,7 +154,7 @@ export default function IngredientsList({
         ([category, categoryIngredients]) => (
           <div key={category} className="mb-6">
             {Object.keys(groupedIngredients).length > 1 && (
-              <h3 className="text-lg font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+              <h3 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">
                 {category}
               </h3>
             )}
@@ -172,8 +172,8 @@ export default function IngredientsList({
                     key={ingredient.id}
                     className={`flex items-center space-x-3 p-3 rounded-lg border transition-all duration-200 cursor-pointer ${
                       isChecked
-                        ? "bg-green-50 border-green-200 text-green-700"
-                        : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                        ? "bg-chart-3/20 border-chart-3/30 text-chart-3"
+                        : "bg-secondary border-border hover:bg-muted"
                     }`}
                     onClick={() => toggleIngredient(ingredient.id)}
                   >
@@ -181,13 +181,13 @@ export default function IngredientsList({
                       <div
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
                           isChecked
-                            ? "bg-green-500 border-green-500"
-                            : "border-gray-300 hover:border-gray-400"
+                            ? "bg-chart-3 border-chart-3"
+                            : "border-border hover:border-muted-foreground"
                         }`}
                       >
                         {isChecked && (
                           <svg
-                            className="w-3 h-3 text-white"
+                            className="w-3 h-3 text-background"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -204,7 +204,7 @@ export default function IngredientsList({
                     </div>
 
                     <div
-                      className={`flex-1 ${isChecked ? "line-through" : ""}`}
+                      className={`flex-1 ${isChecked ? "line-through opacity-75" : "text-foreground"}`}
                     >
                       <span className="font-medium">
                         {formatAmount(adjustedAmount, ingredient.unit)}{" "}
@@ -221,20 +221,20 @@ export default function IngredientsList({
 
       {/* Progress Bar */}
       {checkedIngredients.size > 0 && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="mt-6 p-4 bg-chart-3/20 border border-chart-3/30 rounded-lg">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-green-800">
+            <span className="text-sm font-medium text-chart-3">
               Progress: {checkedIngredients.size}/{ingredients.length}{" "}
               ingredients
             </span>
-            <span className="text-sm text-green-600">
+            <span className="text-sm text-chart-3">
               {Math.round((checkedIngredients.size / ingredients.length) * 100)}
               %
             </span>
           </div>
-          <div className="w-full bg-green-200 rounded-full h-2">
+          <div className="w-full bg-chart-3/30 rounded-full h-2">
             <div
-              className="bg-green-500 h-2 rounded-full transition-all duration-300"
+              className="bg-chart-3 h-2 rounded-full transition-all duration-300"
               style={{
                 width: `${
                   (checkedIngredients.size / ingredients.length) * 100

@@ -134,17 +134,17 @@ export default function RecipesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Nav />
 
       {/* Header Section */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-card border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Discover Amazing <span className="text-orange-600">Recipes</span>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Discover Amazing <span className="text-primary">Recipes</span>
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore thousands of delicious recipes from around the world. Find
               your next favorite dish!
             </p>
@@ -163,13 +163,13 @@ export default function RecipesPage() {
           {/* Quick Filters & Stats */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-muted-foreground">
                 {isLoading ? "Searching..." : `${totalCount} recipes found`}
               </span>
               {Object.keys(filters).length > 0 && (
                 <button
                   onClick={() => setFilters({})}
-                  className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                  className="text-sm text-primary hover:text-primary/80 font-medium"
                 >
                   Clear filters
                 </button>
@@ -179,7 +179,7 @@ export default function RecipesPage() {
             <div className="flex items-center space-x-4">
               {/* Sort Options */}
               <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600">Sort by:</span>
+                <span className="text-sm text-muted-foreground">Sort by:</span>
                 <select
                   value={`${sortBy}-${sortOrder}`}
                   onChange={(e) => {
@@ -189,7 +189,7 @@ export default function RecipesPage() {
                     setSortBy(newSortBy);
                     setSortOrder(newSortOrder);
                   }}
-                  className="text-sm border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:border-orange-500"
+                  className="text-sm border border-border bg-background text-foreground rounded-lg px-3 py-1 focus:outline-none focus:border-primary"
                 >
                   <option value="rating-desc">Highest Rated</option>
                   <option value="rating-asc">Lowest Rated</option>
@@ -203,13 +203,13 @@ export default function RecipesPage() {
               </div>
 
               {/* View Toggle */}
-              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+              <div className="flex items-center border border-border rounded-lg overflow-hidden">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`p-2 ${
                     viewMode === "grid"
-                      ? "bg-orange-600 text-white"
-                      : "text-gray-600 hover:bg-gray-100"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-secondary"
                   }`}
                 >
                   <svg
@@ -224,8 +224,8 @@ export default function RecipesPage() {
                   onClick={() => setViewMode("list")}
                   className={`p-2 ${
                     viewMode === "list"
-                      ? "bg-orange-600 text-white"
-                      : "text-gray-600 hover:bg-gray-100"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-secondary"
                   }`}
                 >
                   <svg
@@ -245,7 +245,7 @@ export default function RecipesPage() {
               {/* Mobile Filter Toggle */}
               <button
                 onClick={toggleFilterSidebar}
-                className="lg:hidden p-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100"
+                className="lg:hidden p-2 border border-border rounded-lg text-foreground hover:bg-secondary"
               >
                 <svg
                   className="w-4 h-4"
@@ -295,7 +295,7 @@ export default function RecipesPage() {
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 border border-gray-300 text-gray-600 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                  className="px-4 py-2 border border-border text-foreground rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary"
                 >
                   Previous
                 </button>
@@ -308,8 +308,8 @@ export default function RecipesPage() {
                       onClick={() => handlePageChange(page)}
                       className={`px-4 py-2 rounded-lg ${
                         currentPage === page
-                          ? "bg-orange-600 text-white"
-                          : "border border-gray-300 text-gray-600 hover:bg-gray-50"
+                          ? "bg-primary text-primary-foreground"
+                          : "border border-border text-foreground hover:bg-secondary"
                       }`}
                     >
                       {page}
@@ -320,7 +320,7 @@ export default function RecipesPage() {
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 border border-gray-300 text-gray-600 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                  className="px-4 py-2 border border-border text-foreground rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary"
                 >
                   Next
                 </button>

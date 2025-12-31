@@ -31,7 +31,7 @@ export default function SearchBar({
         {/* Search Icon */}
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           {isLoading ? (
-            <div className="animate-spin h-5 w-5 text-gray-400">
+            <div className="animate-spin h-5 w-5 text-muted-foreground">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24">
                 <circle
                   className="opacity-25"
@@ -50,7 +50,7 @@ export default function SearchBar({
             </div>
           ) : (
             <svg
-              className="h-5 w-5 text-gray-400"
+              className="h-5 w-5 text-muted-foreground"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -71,14 +71,14 @@ export default function SearchBar({
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder={placeholder}
-          className="w-full pl-12 pr-12 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200 bg-white shadow-sm"
+          className="w-full pl-12 pr-12 py-4 text-lg border-2 border-border rounded-2xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 bg-background text-foreground placeholder-muted-foreground shadow-sm"
         />
 
         {/* Clear Button */}
         {searchTerm && (
           <button
             onClick={handleClear}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-200"
+            className="absolute inset-y-0 right-0 pr-4 flex items-center text-muted-foreground hover:text-foreground transition-colors duration-200"
           >
             <svg
               className="h-5 w-5"
@@ -99,9 +99,9 @@ export default function SearchBar({
 
       {/* Search Suggestions (could be expanded later) */}
       {searchTerm && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
           {/* This could be expanded to show search suggestions */}
-          <div className="p-4 text-sm text-gray-500 text-center">
+          <div className="p-4 text-sm text-muted-foreground text-center">
             Press Enter to search for "{searchTerm}"
           </div>
         </div>

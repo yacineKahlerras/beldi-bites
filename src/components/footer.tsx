@@ -63,16 +63,16 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-card border-t border-border text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-primary-foreground"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -80,11 +80,11 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="text-2xl font-bold">
-                <span className="text-orange-400">Beldi</span>
-                <span className="text-amber-400">Bites</span>
+                <span className="text-primary">Beldi</span>
+                <span className="text-accent">Bites</span>
               </span>
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               Your go-to destination for delicious recipes, cooking tips, and
               culinary inspiration. Join our community of food lovers and
               discover your next favorite dish.
@@ -97,13 +97,13 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-orange-500 text-white placeholder-gray-400"
+                  className="flex-1 px-4 py-2 bg-input border border-border rounded-lg focus:outline-none focus:border-primary text-foreground placeholder-muted-foreground"
                 />
-                <button className="px-6 py-2 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200">
+                <button className="px-6 py-2 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200">
                   Subscribe
                 </button>
               </div>
-              <p className="text-gray-500 text-sm mt-2">
+              <p className="text-muted-foreground text-sm mt-2">
                 Get weekly recipe updates and cooking tips!
               </p>
             </div>
@@ -117,7 +117,7 @@ export default function Footer() {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -134,7 +134,7 @@ export default function Footer() {
                 <li key={index}>
                   <a
                     href={category.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {category.name}
                   </a>
@@ -151,7 +151,7 @@ export default function Footer() {
                 <li key={index}>
                   <a
                     href={item.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {item.name}
                   </a>
@@ -162,16 +162,16 @@ export default function Footer() {
         </div>
 
         {/* Social Media & Bottom Section */}
-        <div className="border-t border-gray-800 pt-8">
+        <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             {/* Social Media */}
             <div className="flex items-center space-x-6 mb-4 md:mb-0">
-              <span className="text-gray-400 font-medium">Follow Us:</span>
+              <span className="text-muted-foreground font-medium">Follow Us:</span>
               {socialMedia.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -181,7 +181,7 @@ export default function Footer() {
 
             {/* App Download Buttons */}
             <div className="flex space-x-4">
-              <button className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors duration-200">
+              <button className="flex items-center space-x-2 bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-lg transition-colors duration-200">
                 <svg
                   className="w-6 h-6"
                   fill="currentColor"
@@ -193,12 +193,12 @@ export default function Footer() {
                   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                 </svg>
                 <div className="text-left">
-                  <div className="text-xs text-gray-400">Get it on</div>
-                  <div className="text-sm font-semibold">Google Play</div>
+                  <div className="text-xs text-muted-foreground">Get it on</div>
+                  <div className="text-sm font-semibold text-foreground">Google Play</div>
                 </div>
               </button>
 
-              <button className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors duration-200">
+              <button className="flex items-center space-x-2 bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-lg transition-colors duration-200">
                 <svg
                   className="w-6 h-6"
                   fill="currentColor"
@@ -207,16 +207,16 @@ export default function Footer() {
                   <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                 </svg>
                 <div className="text-left">
-                  <div className="text-xs text-gray-400">Download on the</div>
-                  <div className="text-sm font-semibold">App Store</div>
+                  <div className="text-xs text-muted-foreground">Download on the</div>
+                  <div className="text-sm font-semibold text-foreground">App Store</div>
                 </div>
               </button>
             </div>
           </div>
 
           {/* Copyright */}
-          <div className="text-center mt-8 pt-8 border-t border-gray-800">
-            <p className="text-gray-400 text-sm">
+          <div className="text-center mt-8 pt-8 border-t border-border">
+            <p className="text-muted-foreground text-sm">
               © 2025 BeldiBites. All rights reserved. Made with ❤️ for food
               lovers everywhere.
             </p>
