@@ -4,9 +4,7 @@ import { useState } from "react";
 const navOptions = [
   { name: "Home", href: "/" },
   { name: "Recipes", href: "/recipes" },
-  { name: "Categories", href: "/categories" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "Create", href: "/create" },
 ];
 
 export default function Nav() {
