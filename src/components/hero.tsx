@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="w-full py-16 px-4 bg-gradient-to-br from-background via-secondary to-muted">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto pb-12">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Hero Content */}
           <div className="flex-1 text-center lg:text-left">
@@ -50,63 +50,6 @@ export default function Hero() {
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/30 rounded-full opacity-60"></div>
               <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/30 rounded-full opacity-60"></div>
             </div>
-          </div>
-        </div>
-
-        {/* Feature highlights */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-primary"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-              Easy Recipes
-            </h3>
-            <p className="text-muted-foreground">
-              Step-by-step instructions that anyone can follow
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-accent"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-              Community Favorites
-            </h3>
-            <p className="text-muted-foreground">
-              Discover recipes loved by our cooking community
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-chart-3/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-chart-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-              Share & Connect
-            </h3>
-            <p className="text-muted-foreground">
-              Share your creations and connect with fellow foodies
-            </p>
           </div>
         </div>
       </div>
