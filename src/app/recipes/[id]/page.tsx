@@ -70,13 +70,13 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Easy":
-        return "bg-green-100 text-green-800";
+        return "bg-chart-3/20 text-chart-3";
       case "Medium":
-        return "bg-yellow-100 text-yellow-800";
+        return "bg-accent/20 text-accent";
       case "Hard":
-        return "bg-red-100 text-red-800";
+        return "bg-destructive/20 text-destructive";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-muted-foreground";
     }
   };
 
@@ -91,10 +91,10 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
             key={index}
             className={`w-5 h-5 ${
               index < fullStars
-                ? "text-yellow-400"
+                ? "text-accent"
                 : index === fullStars && hasHalfStar
-                ? "text-yellow-400"
-                : "text-gray-300"
+                ? "text-accent"
+                : "text-muted"
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -108,26 +108,26 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Nav />
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="animate-pulse">
             {/* Header Skeleton */}
             <div className="mb-8">
-              <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
-              <div className="h-64 bg-gray-200 rounded-2xl mb-6"></div>
-              <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+              <div className="h-8 bg-muted rounded w-1/4 mb-4"></div>
+              <div className="h-64 bg-muted rounded-2xl mb-6"></div>
+              <div className="h-6 bg-muted rounded w-3/4 mb-4"></div>
+              <div className="h-4 bg-muted rounded w-1/2"></div>
             </div>
 
             {/* Content Skeleton */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
-                <div className="h-96 bg-gray-200 rounded-2xl"></div>
-                <div className="h-96 bg-gray-200 rounded-2xl"></div>
+                <div className="h-96 bg-muted rounded-2xl"></div>
+                <div className="h-96 bg-muted rounded-2xl"></div>
               </div>
               <div className="space-y-6">
-                <div className="h-64 bg-gray-200 rounded-2xl"></div>
+                <div className="h-64 bg-muted rounded-2xl"></div>
               </div>
             </div>
           </div>
@@ -138,13 +138,13 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
 
   if (error || !recipe) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Nav />
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-          <div className="bg-white rounded-2xl shadow-lg p-12">
-            <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="bg-card rounded-2xl shadow-lg p-12">
+            <div className="w-24 h-24 bg-destructive/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
-                className="w-12 h-12 text-red-500"
+                className="w-12 h-12 text-destructive"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -157,10 +157,10 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                 />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-foreground mb-4">
               Recipe Not Found
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               {error === "Recipe not found"
                 ? "We couldn't find the recipe you're looking for. It may have been removed or the link might be incorrect."
                 : "There was an error loading this recipe. Please try again later."}
@@ -168,13 +168,13 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => router.back()}
-                className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-orange-500 hover:text-orange-600 transition-all duration-200"
+                className="px-6 py-3 border-2 border-border text-foreground font-semibold rounded-lg hover:border-primary hover:text-primary transition-all duration-200"
               >
                 Go Back
               </button>
               <button
                 onClick={() => router.push("/recipes")}
-                className="px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors duration-200"
+                className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-200"
               >
                 Browse All Recipes
               </button>
@@ -193,23 +193,23 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Nav />
 
       {/* Hero Section */}
       <div className="relative">
         {/* Recipe Image */}
         <div className="h-96 overflow-hidden">
-          <div className="w-full h-full bg-gradient-to-br from-orange-200 to-amber-200 flex items-center justify-center">
-            <div className="text-center text-gray-600">
+          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+            <div className="text-center text-muted-foreground">
               <svg
-                className="mx-auto mb-4 w-32 h-32 text-orange-400"
+                className="mx-auto mb-4 w-32 h-32 text-primary"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
                 <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
               </svg>
-              <p className="text-2xl font-bold text-gray-700">Recipe Image</p>
+              <p className="text-2xl font-bold text-foreground">Recipe Image</p>
               <p className="text-lg opacity-75">Click to add your photo</p>
             </div>
           </div>
@@ -245,8 +245,8 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                     onClick={handleBookmark}
                     className={`p-3 rounded-full backdrop-blur-sm transition-all duration-200 ${
                       isBookmarked
-                        ? "bg-red-500 text-white"
-                        : "bg-white/20 text-white hover:bg-white/30"
+                        ? "bg-destructive text-destructive-foreground"
+                        : "bg-card/20 text-white hover:bg-card/30"
                     }`}
                   >
                     <svg
@@ -266,7 +266,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
 
                   <button
                     onClick={handleShare}
-                    className="p-3 rounded-full bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm transition-all duration-200"
+                    className="p-3 rounded-full bg-card/20 text-white hover:bg-card/30 backdrop-blur-sm transition-all duration-200"
                   >
                     <svg
                       className="w-5 h-5"
@@ -345,7 +345,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Tab Navigation */}
         <div className="mb-8">
-          <div className="border-b border-gray-200 bg-white rounded-t-2xl">
+          <div className="border-b border-border bg-card rounded-t-2xl">
             <nav className="flex space-x-8 px-6">
               {tabs.map((tab) => (
                 <button
@@ -353,8 +353,8 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 ${
                     activeTab === tab.id
-                      ? "border-orange-500 text-orange-600"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                      ? "border-primary text-primary"
+                      : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                   }`}
                 >
                   <span className="mr-2">{tab.icon}</span>
@@ -371,31 +371,31 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
             {activeTab === "overview" && (
               <div className="space-y-6">
                 {/* Quick Stats */}
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <div className="bg-card rounded-2xl shadow-lg p-6">
+                  <h2 className="text-2xl font-bold text-foreground mb-6">
                     Quick Info
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
                         <svg
-                          className="w-8 h-8 text-orange-600"
+                          className="w-8 h-8 text-primary"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
                           <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                         </svg>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900">
+                      <div className="text-2xl font-bold text-foreground">
                         {recipe.prepTime}m
                       </div>
-                      <div className="text-sm text-gray-600">Prep Time</div>
+                      <div className="text-sm text-muted-foreground">Prep Time</div>
                     </div>
 
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="w-16 h-16 bg-destructive/20 rounded-full flex items-center justify-center mx-auto mb-3">
                         <svg
-                          className="w-8 h-8 text-red-600"
+                          className="w-8 h-8 text-destructive"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -406,32 +406,32 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                           />
                         </svg>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900">
+                      <div className="text-2xl font-bold text-foreground">
                         {recipe.cookTime}m
                       </div>
-                      <div className="text-sm text-gray-600">Cook Time</div>
+                      <div className="text-sm text-muted-foreground">Cook Time</div>
                     </div>
 
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="w-16 h-16 bg-chart-3/20 rounded-full flex items-center justify-center mx-auto mb-3">
                         <svg
-                          className="w-8 h-8 text-green-600"
+                          className="w-8 h-8 text-chart-3"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
                           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900">
+                      <div className="text-2xl font-bold text-foreground">
                         {servings}
                       </div>
-                      <div className="text-sm text-gray-600">Servings</div>
+                      <div className="text-sm text-muted-foreground">Servings</div>
                     </div>
 
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="w-16 h-16 bg-chart-1/20 rounded-full flex items-center justify-center mx-auto mb-3">
                         <svg
-                          className="w-8 h-8 text-blue-600"
+                          className="w-8 h-8 text-chart-1"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -442,29 +442,29 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                           />
                         </svg>
                       </div>
-                      <div className="text-2xl font-bold text-gray-900">
+                      <div className="text-2xl font-bold text-foreground">
                         {Math.round(recipe.nutrition.calories / servings)}
                       </div>
-                      <div className="text-sm text-gray-600">Cal/Serving</div>
+                      <div className="text-sm text-muted-foreground">Cal/Serving</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Tags & Chef Info */}
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <div className="bg-card rounded-2xl shadow-lg p-6">
+                  <h3 className="text-xl font-bold text-foreground mb-4">
                     Recipe Details
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <span className="text-sm font-medium text-gray-700">
+                      <span className="text-sm font-medium text-foreground">
                         Tags:
                       </span>
                       <div className="flex flex-wrap gap-2 mt-2">
                         {recipe.tags.map((tag, index) => (
                           <span
                             key={index}
-                            className="px-3 py-1 bg-orange-50 text-orange-600 text-sm font-medium rounded-full"
+                            className="px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full"
                           >
                             {tag}
                           </span>
@@ -472,21 +472,21 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-amber-400 rounded-full flex items-center justify-center">
-                          <span className="text-white text-lg font-bold">
+                        <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                          <span className="text-primary-foreground text-lg font-bold">
                             {recipe.chef.name.charAt(0)}
                           </span>
                         </div>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <span className="font-semibold text-gray-900">
+                            <span className="font-semibold text-foreground">
                               {recipe.chef.name}
                             </span>
                             {recipe.chef.verified && (
                               <svg
-                                className="w-5 h-5 text-blue-500"
+                                className="w-5 h-5 text-chart-1"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -498,12 +498,12 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                               </svg>
                             )}
                           </div>
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             {recipe.cuisine} Cuisine
                           </span>
                         </div>
                       </div>
-                      <button className="px-4 py-2 border border-orange-600 text-orange-600 font-medium rounded-lg hover:bg-orange-50 transition-colors">
+                      <button className="px-4 py-2 border border-primary text-primary font-medium rounded-lg hover:bg-primary/20 transition-colors">
                         Follow Chef
                       </button>
                     </div>
@@ -536,12 +536,12 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Actions */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <div className="bg-card rounded-2xl shadow-lg p-6">
+              <h3 className="text-lg font-bold text-foreground mb-4">
                 Quick Actions
               </h3>
               <div className="space-y-3">
-                <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors">
+                <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -558,7 +558,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                   <span>Add to Meal Plan</span>
                 </button>
 
-                <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 border-2 border-orange-600 text-orange-600 font-semibold rounded-lg hover:bg-orange-50 transition-colors">
+                <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/20 transition-colors">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -578,41 +578,41 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
             </div>
 
             {/* Similar Recipes */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <div className="bg-card rounded-2xl shadow-lg p-6">
+              <h3 className="text-lg font-bold text-foreground mb-4">
                 Similar Recipes
               </h3>
               <div className="space-y-4">
-                <div className="flex space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-200 to-amber-200 rounded-lg flex-shrink-0"></div>
+                <div className="flex space-x-3 p-3 rounded-lg hover:bg-secondary cursor-pointer">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex-shrink-0"></div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                    <h4 className="font-semibold text-foreground text-sm mb-1">
                       Mediterranean Pasta
                     </h4>
-                    <div className="text-xs text-gray-600 mb-1">
+                    <div className="text-xs text-muted-foreground mb-1">
                       25 mins • Easy
                     </div>
                     <div className="flex items-center">
                       <StarRating rating={4.6} />
-                      <span className="text-xs text-gray-600 ml-2">
+                      <span className="text-xs text-muted-foreground ml-2">
                         4.6 (89)
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-200 to-amber-200 rounded-lg flex-shrink-0"></div>
+                <div className="flex space-x-3 p-3 rounded-lg hover:bg-secondary cursor-pointer">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex-shrink-0"></div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                    <h4 className="font-semibold text-foreground text-sm mb-1">
                       Greek Salad Bowl
                     </h4>
-                    <div className="text-xs text-gray-600 mb-1">
+                    <div className="text-xs text-muted-foreground mb-1">
                       15 mins • Easy
                     </div>
                     <div className="flex items-center">
                       <StarRating rating={4.8} />
-                      <span className="text-xs text-gray-600 ml-2">
+                      <span className="text-xs text-muted-foreground ml-2">
                         4.8 (156)
                       </span>
                     </div>
@@ -620,7 +620,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                 </div>
               </div>
 
-              <button className="w-full mt-4 px-4 py-2 text-orange-600 font-medium text-sm hover:bg-orange-50 rounded-lg transition-colors">
+              <button className="w-full mt-4 px-4 py-2 text-primary font-medium text-sm hover:bg-primary/20 rounded-lg transition-colors">
                 View More Similar Recipes
               </button>
             </div>
