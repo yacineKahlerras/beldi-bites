@@ -4,7 +4,7 @@ import FeaturedSection from "@/components/featured";
 
 export default function Home() {
   const boop: any = "hello";
-  console.log("helloooooooooooo", boop);
+  console.log("helloooooooo", boop);
   return (
     <div className="flex flex-col min-h-screen">
       <Nav />
