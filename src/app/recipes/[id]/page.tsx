@@ -24,7 +24,6 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
   >("overview");
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [servings, setServings] = useState(4);
-  const [showImageModal, setShowImageModal] = useState(false);
 
   const router = useRouter();
 

@@ -102,7 +102,7 @@ export default function SearchBar({
         <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
           {/* This could be expanded to show search suggestions */}
           <div className="p-4 text-sm text-muted-foreground text-center">
-            Press Enter to search for "{searchTerm}"
+            Press Enter to search for &quot;{searchTerm}&quot;
           </div>
         </div>
       )}

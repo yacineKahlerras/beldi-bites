@@ -1,9 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import type { MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { RecipeCardProps } from "@/types/recipe";
+
+const StarRating = ({ rating }: { rating: number }) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+
+  return (
+    <div className="flex items-center space-x-1">
+      {[...Array(5)].map((_, index) => (
+        <svg
+          key={index}
+          className={`w-4 h-4 ${
+            index < fullStars
+              ? "text-accent"
+              : index === fullStars && hasHalfStar
+              ? "text-accent"
+              : "text-muted"
+          }`}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))}
+    </div>
+  );
+};
 
 export default function RecipeCard({
   recipe,
@@ -13,21 +40,20 @@ export default function RecipeCard({
   onShare,
 }: RecipeCardProps) {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [imageError, setImageError] = useState(false);
   const router = useRouter();
 
   const handleCardClick = () => {
     router.push(`/recipes/${recipe.id}`);
   };
 
-  const handleBookmark = (e: React.MouseEvent) => {
+  const handleBookmark = (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsBookmarked(!isBookmarked);
     onBookmark?.(recipe.id);
   };
 
-  const handleShare = (e: React.MouseEvent) => {
+  const handleShare = (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     onShare?.(recipe);
@@ -44,32 +70,6 @@ export default function RecipeCard({
       default:
         return "bg-muted text-muted-foreground";
     }
-  };
-
-  const StarRating = ({ rating }: { rating: number }) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    return (
-      <div className="flex items-center space-x-1">
-        {[...Array(5)].map((_, index) => (
-          <svg
-            key={index}
-            className={`w-4 h-4 ${
-              index < fullStars
-                ? "text-accent"
-                : index === fullStars && hasHalfStar
-                ? "text-accent"
-                : "text-muted"
-            }`}
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
-      </div>
-    );
   };
 
   const cardClasses = `
@@ -94,39 +94,18 @@ export default function RecipeCard({
     <div className={cardClasses} onClick={handleCardClick}>
       {/* Recipe Image */}
       <div className={imageClasses}>
-        {!imageError ? (
-          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <svg
-                className="mx-auto mb-2 w-16 h-16 text-primary"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-              </svg>
-              <p className="text-sm font-medium opacity-75">Recipe Image</p>
-            </div>
+        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <svg
+              className="mx-auto mb-2 w-16 h-16 text-primary"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+            </svg>
+            <p className="text-sm font-medium opacity-75">Recipe Image</p>
           </div>
-        ) : (
-          <div className="w-full h-full bg-secondary flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <svg
-                className="mx-auto mb-2 w-12 h-12"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              <p className="text-xs">Image unavailable</p>
-            </div>
-          </div>
-        )}
+        </div>
 
         {/* Overlay badges */}
         <div className="absolute top-4 left-4 flex space-x-2">

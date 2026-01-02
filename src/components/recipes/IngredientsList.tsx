@@ -6,7 +6,7 @@ import { Ingredient } from "@/types/recipe";
 interface IngredientsListProps {
   ingredients: Ingredient[];
   servings: number;
-  onServingsChange?: (servings: number) => void;
+  onServingsChange?: (_servings: number) => void;
 }
 
 export default function IngredientsList({

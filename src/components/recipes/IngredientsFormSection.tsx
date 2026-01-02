@@ -8,7 +8,7 @@ import { Plus, Trash2, GripVertical } from "lucide-react";
 
 interface IngredientsFormSectionProps {
   ingredients: Ingredient[];
-  onChange: (ingredients: Ingredient[]) => void;
+  onChange: (_ingredients: Ingredient[]) => void;
 }
 
 const INGREDIENT_CATEGORIES = [
@@ -54,7 +54,7 @@ export default function IngredientsFormSection({
   };
 
   const removeIngredient = (id: string) => {
-    onChange(ingredients.filter((ing) => ing.id !== id));
+    onChange(ingredients.filter((ingredient) => ingredient.id !== id));
   };
 
   const updateIngredient = (
@@ -63,8 +63,8 @@ export default function IngredientsFormSection({
     value: string | number
   ) => {
     onChange(
-      ingredients.map((ing) =>
-        ing.id === id ? { ...ing, [field]: value } : ing
+      ingredients.map((ingredient) =>
+        ingredient.id === id ? { ...ingredient, [field]: value } : ingredient
       )
     );
   };
@@ -120,7 +120,7 @@ export default function IngredientsFormSection({
             </Button>
           </div>
         ) : (
-          ingredients.map((ingredient, index) => (
+          ingredients.map((ingredient) => (
             <div
               key={ingredient.id}
               className="grid grid-cols-12 gap-3 items-start p-4 bg-background/50 rounded-lg border border-border hover:border-primary/50 transition-colors"

@@ -8,7 +8,7 @@ import { Plus, Trash2, GripVertical, Clock } from "lucide-react";
 
 interface InstructionsFormSectionProps {
   instructions: Instruction[];
-  onChange: (instructions: Instruction[]) => void;
+  onChange: (_instructions: Instruction[]) => void;
 }
 
 export default function InstructionsFormSection({

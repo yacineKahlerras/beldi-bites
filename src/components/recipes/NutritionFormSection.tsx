@@ -6,7 +6,7 @@ import { Activity } from "lucide-react";
 
 interface NutritionFormSectionProps {
   nutrition: Nutrition;
-  onChange: (nutrition: Nutrition) => void;
+  onChange: (_nutrition: Nutrition) => void;
 }
 
 export default function NutritionFormSection({

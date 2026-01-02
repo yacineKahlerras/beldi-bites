@@ -93,12 +93,12 @@ export interface RecipeCardProps {
   recipe: Recipe;
   variant?: "default" | "compact" | "featured";
   showDescription?: boolean;
-  onBookmark?: (recipeId: string) => void;
-  onShare?: (recipe: Recipe) => void;
+  onBookmark?: (_recipeId: string) => void;
+  onShare?: (_recipeToShare: Recipe) => void;
 }
 
 export interface SearchBarProps {
-  onSearch: (query: string) => void;
+  onSearch: (_searchQuery: string) => void;
   placeholder?: string;
   initialValue?: string;
   isLoading?: boolean;
@@ -106,7 +106,7 @@ export interface SearchBarProps {
 
 export interface FilterSidebarProps {
   filters: RecipeFilters;
-  onFilterChange: (filters: RecipeFilters) => void;
+  onFilterChange: (_newFilters: RecipeFilters) => void;
   categories: CategoryFilter[];
   cuisines: FilterOption[];
   isOpen?: boolean;

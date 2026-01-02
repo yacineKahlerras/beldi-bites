@@ -101,7 +101,7 @@ export default function InstructionsList({
 
       {/* Step Navigation */}
       <div className="mb-6 flex flex-wrap gap-2">
-        {instructions.map((_, index) => {
+        {instructions.map((_instruction, index) => {
           const stepNumber = index + 1;
           const isCompleted = completedSteps.has(stepNumber);
           const isCurrent = currentStep === stepNumber;
@@ -142,7 +142,7 @@ export default function InstructionsList({
 
       {/* Instructions List */}
       <div className="space-y-6">
-        {instructions.map((instruction, index) => {
+        {instructions.map((instruction) => {
           const stepNumber = instruction.step;
           const isCompleted = completedSteps.has(stepNumber);
           const isCurrent = currentStep === stepNumber;

@@ -15,7 +15,7 @@ import { Save, X, ChefHat } from "lucide-react";
 interface RecipeFormProps {
   mode: "create" | "edit";
   initialData?: Recipe;
-  onSubmit: (data: Partial<Recipe>) => Promise<void>;
+  onSubmit: (_data: Partial<Recipe>) => Promise<void>;
 }
 
 const CATEGORIES = [

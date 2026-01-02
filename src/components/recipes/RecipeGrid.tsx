@@ -7,8 +7,8 @@ interface RecipeGridProps {
   recipes: Recipe[];
   isLoading?: boolean;
   variant?: "default" | "compact";
-  onBookmark?: (recipeId: string) => void;
-  onShare?: (recipe: Recipe) => void;
+  onBookmark?: (_recipeId: string) => void;
+  onShare?: (_recipe: Recipe) => void;
 }
 
 export default function RecipeGrid({
@@ -70,7 +70,7 @@ export default function RecipeGrid({
           No recipes found
         </h3>
         <p className="text-muted-foreground max-w-md">
-          We couldn't find any recipes matching your criteria. Try adjusting
+          We couldn&apos;t find any recipes matching your criteria. Try adjusting
           your search or filters to discover more delicious options.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-4">
