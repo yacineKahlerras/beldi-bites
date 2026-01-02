@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Beldi Bytes",
-  description: "Discover and explore authentic recipes, curated with fresh ingredients and step-by-step instructions to inspire your home cooking journey",
+  description:
+    "Discover and explore authentic recipes, curated with fresh ingredients and step-by-step instructions to inspire your home cooking journey",
 };
 
 export default function RootLayout({

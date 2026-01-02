@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ChefHat } from "lucide-react";
 
 const navOptions = [
   { name: "Home", href: "/" },
@@ -17,15 +18,8 @@ export default function Nav() {
           {/* Logo/Brand */}
           <div className="flex items-center">
             <div className="flex items-center space-x-3">
-              {/* Recipe icon */}
               <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-primary-foreground"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                </svg>
+                <ChefHat className="w-6 h-6 text-primary-foreground" />
               </div>
               <span className="text-2xl font-bold">
                 <span className="text-primary">Beldi</span>
@@ -116,8 +110,18 @@ export default function Nav() {
                 onClick={() => setIsMenuOpen(false)}
                 className="text-muted-foreground hover:text-foreground focus:outline-none"
               >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
