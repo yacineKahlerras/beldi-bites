@@ -11,7 +11,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint  --format=compact --no-color"
+    "*.{js,jsx,ts,tsx}": "eslint  --format=stylish"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.83.0",
