@@ -538,4 +538,97 @@ export const recipeService = {
       .slice(0, 10)
       .map(([tag]) => tag);
   },
+
+  async createRecipe(recipeData: Partial<Recipe>): Promise<Recipe> {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    const newRecipe: Recipe = {
+      id: String(dummyRecipes.length + 1),
+      title: recipeData.title || "",
+      description: recipeData.description || "",
+      image: "/api/placeholder/600/400",
+      cookTime: recipeData.cookTime || 0,
+      prepTime: recipeData.prepTime || 0,
+      servings: recipeData.servings || 4,
+      difficulty: recipeData.difficulty || "Easy",
+      rating: 0,
+      reviewCount: 0,
+      chef: {
+        name: "Current User", // This would come from auth context
+        verified: false,
+      },
+      category: recipeData.category || "Main Course",
+      cuisine: recipeData.cuisine || "Other",
+      tags: recipeData.tags || [],
+      ingredients: recipeData.ingredients || [],
+      instructions: recipeData.instructions || [],
+      nutrition: recipeData.nutrition || {
+        calories: 0,
+        protein: 0,
+        carbs: 0,
+        fat: 0,
+        fiber: 0,
+        sugar: 0,
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Add to dummy recipes array
+    dummyRecipes.push(newRecipe);
+
+    return newRecipe;
+  },
+
+  async updateRecipe(id: string, recipeData: Partial<Recipe>): Promise<Recipe> {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    const recipeIndex = dummyRecipes.findIndex((recipe) => recipe.id === id);
+
+    if (recipeIndex === -1) {
+      throw new Error("Recipe not found");
+    }
+
+    const existingRecipe = dummyRecipes[recipeIndex];
+
+    const updatedRecipe: Recipe = {
+      ...existingRecipe,
+      title: recipeData.title ?? existingRecipe.title,
+      description: recipeData.description ?? existingRecipe.description,
+      cookTime: recipeData.cookTime ?? existingRecipe.cookTime,
+      prepTime: recipeData.prepTime ?? existingRecipe.prepTime,
+      servings: recipeData.servings ?? existingRecipe.servings,
+      difficulty: recipeData.difficulty ?? existingRecipe.difficulty,
+      category: recipeData.category ?? existingRecipe.category,
+      cuisine: recipeData.cuisine ?? existingRecipe.cuisine,
+      tags: recipeData.tags ?? existingRecipe.tags,
+      ingredients: recipeData.ingredients ?? existingRecipe.ingredients,
+      instructions: recipeData.instructions ?? existingRecipe.instructions,
+      nutrition: recipeData.nutrition ?? existingRecipe.nutrition,
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Update in dummy recipes array
+    dummyRecipes[recipeIndex] = updatedRecipe;
+
+    return updatedRecipe;
+  },
+
+  async deleteRecipe(id: string): Promise<boolean> {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    const recipeIndex = dummyRecipes.findIndex((recipe) => recipe.id === id);
+
+    if (recipeIndex === -1) {
+      throw new Error("Recipe not found");
+    }
+
+    // Remove from dummy recipes array
+    dummyRecipes.splice(recipeIndex, 1);
+
+    return true;
+  },
 };
