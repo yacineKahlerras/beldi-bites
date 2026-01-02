@@ -3,7 +3,7 @@ import Hero from "@/components/hero";
 import FeaturedSection from "@/components/featured";
 
 export default function Home() {
-  console.log("hello");
+  console.log("hellooooo");
   return (
     <div className="flex flex-col min-h-screen">
       <Nav />
