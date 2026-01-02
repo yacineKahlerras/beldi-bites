@@ -34,6 +34,8 @@ export default [
           varsIgnorePattern: "^_",
         },
       ],
+      "no-console": ["error"],
+      "@typescript-eslint/no-explicit-any": ["error"],
     },
   },
 ];
