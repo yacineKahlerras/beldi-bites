@@ -4,6 +4,15 @@
 npm run lint
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
-  echo "Lint errors found. Push aborted."
+  echo "\n========================================="
+  echo "  🚫 PUSH REJECTED: Linting Failed!"
+  echo "========================================="
+  echo "One or more lint errors were found in your code."
+  echo "Please fix the issues reported above before pushing."
+  echo "\nHow to fix:"
+  echo "  1. Review the lint errors above."
+  echo "  2. Fix the code style or errors as indicated."
+  echo "  3. Stage your changes and try pushing again."
+  echo "\nIf you need help, run: npm run lint\n"
   exit 1
 fi
