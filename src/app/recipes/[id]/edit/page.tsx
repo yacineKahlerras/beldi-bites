@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Recipe } from "@/types/recipe";
-import { recipeService } from "@/services/recipeService";
+import { useRecipe, useUpdateRecipe } from "@/hooks/useRecipes";
 import Nav from "@/components/nav";
 import RecipeForm from "@/components/recipes/RecipeForm";
 
@@ -15,46 +14,22 @@ interface EditRecipePageProps {
 
 export default function EditRecipePage({ params }: EditRecipePageProps) {
   const router = useRouter();
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchRecipe = async () => {
-      try {
-        setIsLoading(true);
-        const recipeData = await recipeService.getRecipeById(params.id);
-
-        if (recipeData) {
-          setRecipe(recipeData);
-          setError(null);
-        } else {
-          setError("Recipe not found");
-        }
-      } catch (err) {
-        setError("Failed to load recipe");
-        console.error("Error fetching recipe:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchRecipe();
-  }, [params.id]);
+  // React Query hooks
+  const { data: recipe, isLoading, error } = useRecipe(params.id);
+  const updateRecipeMutation = useUpdateRecipe();
 
   const handleUpdateRecipe = async (data: Partial<Recipe>) => {
-    try {
-      const updatedRecipe = await recipeService.updateRecipe(params.id, data);
+    await updateRecipeMutation.mutateAsync({
+      id: params.id,
+      data,
+    });
 
-      // Show success message (you can implement a toast notification here)
-      console.log("Recipe updated successfully:", updatedRecipe);
+    // Show success message (you can implement a toast notification here)
+    // Recipe updated successfully
 
-      // Redirect to the recipe's detail page
-      router.push(`/recipes/${params.id}`);
-    } catch (error) {
-      console.error("Failed to update recipe:", error);
-      throw error;
-    }
+    // Redirect to the recipe's detail page
+    router.push(`/recipes/${params.id}`);
   };
 
   if (isLoading) {
@@ -82,7 +57,7 @@ export default function EditRecipePage({ params }: EditRecipePageProps) {
     );
   }
 
-  if (error || !recipe) {
+  if (error || (!isLoading && !recipe)) {
     return (
       <div className="min-h-screen bg-background">
         <Nav />
@@ -107,7 +82,7 @@ export default function EditRecipePage({ params }: EditRecipePageProps) {
               Recipe Not Found
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              {error === "Recipe not found"
+              {!recipe
                 ? "We couldn't find the recipe you're trying to edit."
                 : "There was an error loading this recipe. Please try again later."}
             </p>

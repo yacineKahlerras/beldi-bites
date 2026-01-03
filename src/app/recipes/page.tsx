@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
+import { RecipeFilters, Recipe } from "@/types/recipe";
 import {
-  RecipeFilters,
-  RecipeSearchParams,
-  Recipe,
-  CategoryFilter,
-  FilterOption,
-} from "@/types/recipe";
-import { recipeService } from "@/services/recipeService";
+  useSearchRecipes,
+  useCategories,
+  useCuisines,
+} from "@/hooks/useRecipes";
 import SearchBar from "@/components/recipes/SearchBar";
 import FilterSidebar from "@/components/recipes/FilterSidebar";
 import RecipeGrid from "@/components/recipes/RecipeGrid";
@@ -16,8 +14,6 @@ import Nav from "@/components/nav";
 
 export default function RecipesPage() {
   // State management
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<RecipeFilters>({});
   const [sortBy, setSortBy] = useState<
@@ -25,92 +21,50 @@ export default function RecipesPage() {
   >("rating");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
-
-  // Filter options
-  const [categories, setCategories] = useState<CategoryFilter[]>([]);
-  const [cuisines, setCuisines] = useState<FilterOption[]>([]);
 
   // UI state
   const [isFilterSidebarOpen, setIsFilterSidebarOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  // Fetch filter options on component mount
-  useEffect(() => {
-    const fetchFilterOptions = async () => {
-      try {
-        const [categoriesData, cuisinesData] = await Promise.all([
-          recipeService.getCategories(),
-          recipeService.getCuisines(),
-        ]);
-        setCategories(categoriesData);
-        setCuisines(cuisinesData);
-      } catch (error) {
-        console.error("Error fetching filter options:", error);
-      }
-    };
+  // React Query hooks
+  const { data: searchResponse, isLoading } = useSearchRecipes({
+    query: searchQuery,
+    filters: filters,
+    sortBy: sortBy,
+    sortOrder: sortOrder,
+    page: currentPage,
+    limit: 12,
+  });
 
-    fetchFilterOptions();
-  }, []);
+  const { data: categories = [] } = useCategories();
+  const { data: cuisines = [] } = useCuisines();
 
-  // Search recipes with debouncing and filters
-  const searchRecipes = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const searchParams: RecipeSearchParams = {
-        query: searchQuery,
-        filters: filters,
-        sortBy: sortBy,
-        sortOrder: sortOrder,
-        page: currentPage,
-        limit: 12,
-      };
-
-      const response = await recipeService.searchRecipes(searchParams);
-      setRecipes(response.recipes);
-      setTotalPages(response.totalPages);
-      setTotalCount(response.totalCount);
-    } catch (error) {
-      console.error("Error searching recipes:", error);
-      setRecipes([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [searchQuery, filters, sortBy, sortOrder, currentPage]);
-
-  // Effect to trigger search when dependencies change
-  useEffect(() => {
-    searchRecipes();
-  }, [searchRecipes]);
-
-  // Reset page when search query or filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, filters]);
+  // Extract data from search response
+  const recipes = searchResponse?.recipes || [];
+  const totalPages = searchResponse?.totalPages || 1;
+  const totalCount = searchResponse?.totalCount || 0;
 
   // Handler functions
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    setCurrentPage(1);
   };
 
   const handleFilterChange = (newFilters: RecipeFilters) => {
     setFilters(newFilters);
+    setCurrentPage(1);
   };
-
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleBookmark = (recipeId: string) => {
-    console.log("Bookmarking recipe:", recipeId);
+  const handleBookmark = (_recipeId: string) => {
     // Implement bookmark functionality
   };
 
   const handleShare = (recipe: Recipe) => {
-    console.log("Sharing recipe:", recipe.title);
     // Implement share functionality
     if (navigator.share) {
       navigator.share({
@@ -176,7 +130,7 @@ export default function RecipesPage() {
                   value={`${sortBy}-${sortOrder}`}
                   onChange={(e) => {
                     const [newSortBy, newSortOrder] = e.target.value.split(
-                      "-"
+                      "-",
                     ) as [typeof sortBy, typeof sortOrder];
                     setSortBy(newSortBy);
                     setSortOrder(newSortOrder);

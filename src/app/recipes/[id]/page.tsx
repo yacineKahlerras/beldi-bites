@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Recipe } from "@/types/recipe";
-import { recipeService } from "@/services/recipeService";
+import { useRecipe } from "@/hooks/useRecipes";
 import Nav from "@/components/nav";
 import IngredientsList from "@/components/recipes/IngredientsList";
 import InstructionsList from "@/components/recipes/InstructionsList";
@@ -15,10 +14,33 @@ interface RecipeDetailsPageProps {
   };
 }
 
+const StarRating = ({ rating }: { rating: number }) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+
+  return (
+    <div className="flex items-center space-x-1">
+      {[...Array(5)].map((_, index) => (
+        <svg
+          key={index}
+          className={`w-5 h-5 ${
+            index < fullStars
+              ? "text-accent"
+              : index === fullStars && hasHalfStar
+                ? "text-accent"
+                : "text-muted"
+          }`}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))}
+    </div>
+  );
+};
+
 export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<
     "overview" | "ingredients" | "instructions" | "nutrition"
   >("overview");
@@ -27,29 +49,13 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchRecipe = async () => {
-      try {
-        setIsLoading(true);
-        const recipeData = await recipeService.getRecipeById(params.id);
+  // React Query hook
+  const { data: recipe, isLoading, error } = useRecipe(params.id);
 
-        if (recipeData) {
-          setRecipe(recipeData);
-          setServings(recipeData.servings);
-          setError(null);
-        } else {
-          setError("Recipe not found");
-        }
-      } catch (err) {
-        setError("Failed to load recipe");
-        console.error("Error fetching recipe:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchRecipe();
-  }, [params.id]);
+  // Update servings when recipe data loads
+  if (recipe && servings === 4 && recipe.servings !== 4) {
+    setServings(recipe.servings);
+  }
 
   const handleBookmark = () => {
     setIsBookmarked(!isBookmarked);
@@ -77,32 +83,6 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
       default:
         return "bg-muted text-muted-foreground";
     }
-  };
-
-  const StarRating = ({ rating }: { rating: number }) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    return (
-      <div className="flex items-center space-x-1">
-        {[...Array(5)].map((_, index) => (
-          <svg
-            key={index}
-            className={`w-5 h-5 ${
-              index < fullStars
-                ? "text-accent"
-                : index === fullStars && hasHalfStar
-                ? "text-accent"
-                : "text-muted"
-            }`}
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
-      </div>
-    );
   };
 
   if (isLoading) {
@@ -135,7 +115,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
     );
   }
 
-  if (error || !recipe) {
+  if (error || (!isLoading && !recipe)) {
     return (
       <div className="min-h-screen bg-background">
         <Nav />
@@ -160,7 +140,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
               Recipe Not Found
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              {error === "Recipe not found"
+              {!recipe
                 ? "We couldn't find the recipe you're looking for. It may have been removed or the link might be incorrect."
                 : "There was an error loading this recipe. Please try again later."}
             </p>
@@ -325,7 +305,7 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
 
                 <span
                   className={`px-3 py-1 rounded-full text-sm font-semibold ${getDifficultyColor(
-                    recipe.difficulty
+                    recipe.difficulty,
                   )}`}
                 >
                   {recipe.difficulty}
@@ -388,7 +368,9 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                       <div className="text-2xl font-bold text-foreground">
                         {recipe.prepTime}m
                       </div>
-                      <div className="text-sm text-muted-foreground">Prep Time</div>
+                      <div className="text-sm text-muted-foreground">
+                        Prep Time
+                      </div>
                     </div>
 
                     <div className="text-center">
@@ -408,7 +390,9 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                       <div className="text-2xl font-bold text-foreground">
                         {recipe.cookTime}m
                       </div>
-                      <div className="text-sm text-muted-foreground">Cook Time</div>
+                      <div className="text-sm text-muted-foreground">
+                        Cook Time
+                      </div>
                     </div>
 
                     <div className="text-center">
@@ -424,7 +408,9 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                       <div className="text-2xl font-bold text-foreground">
                         {servings}
                       </div>
-                      <div className="text-sm text-muted-foreground">Servings</div>
+                      <div className="text-sm text-muted-foreground">
+                        Servings
+                      </div>
                     </div>
 
                     <div className="text-center">
@@ -444,7 +430,9 @@ export default function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
                       <div className="text-2xl font-bold text-foreground">
                         {Math.round(recipe.nutrition.calories / servings)}
                       </div>
-                      <div className="text-sm text-muted-foreground">Cal/Serving</div>
+                      <div className="text-sm text-muted-foreground">
+                        Cal/Serving
+                      </div>
                     </div>
                   </div>
                 </div>
