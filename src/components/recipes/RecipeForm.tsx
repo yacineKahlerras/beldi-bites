@@ -14,7 +14,7 @@ import { Save, X, ChefHat } from "lucide-react";
 
 interface RecipeFormProps {
   mode: "create" | "edit";
-  initialData?: Recipe;
+  initialData?: Recipe | null;
   onSubmit: (_data: Partial<Recipe>) => Promise<void>;
 }
 
@@ -72,11 +72,11 @@ export default function RecipeForm({
   });
 
   const [ingredients, setIngredients] = useState<Ingredient[]>(
-    initialData?.ingredients || []
+    initialData?.ingredients || [],
   );
 
   const [instructions, setInstructions] = useState<Instruction[]>(
-    initialData?.instructions || []
+    initialData?.instructions || [],
   );
 
   const [nutrition, setNutrition] = useState<Nutrition>(
@@ -87,13 +87,10 @@ export default function RecipeForm({
       fat: 0,
       fiber: 0,
       sugar: 0,
-    }
+    },
   );
 
-  const handleChange = (
-    field: string,
-    value: string | number
-  ) => {
+  const handleChange = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error for this field when user starts typing
     if (errors[field]) {
@@ -132,11 +129,10 @@ export default function RecipeForm({
       newErrors.ingredients = "At least one ingredient is required";
     } else {
       const hasEmptyIngredients = ingredients.some(
-        (ing) => !ing.name.trim() || ing.amount <= 0
+        (ing) => !ing.name.trim() || ing.amount <= 0,
       );
       if (hasEmptyIngredients) {
-        newErrors.ingredients =
-          "All ingredients must have a name and amount";
+        newErrors.ingredients = "All ingredients must have a name and amount";
       }
     }
 
@@ -144,10 +140,11 @@ export default function RecipeForm({
       newErrors.instructions = "At least one instruction step is required";
     } else {
       const hasEmptyInstructions = instructions.some(
-        (inst) => !inst.description.trim()
+        (inst) => !inst.description.trim(),
       );
       if (hasEmptyInstructions) {
-        newErrors.instructions = "All instruction steps must have a description";
+        newErrors.instructions =
+          "All instruction steps must have a description";
       }
     }
 
@@ -180,9 +177,9 @@ export default function RecipeForm({
 
       await onSubmit(recipeData);
     } catch (error) {
-      console.error("Error submitting recipe:", error);
       setErrors({
         submit: "Failed to save recipe. Please try again.",
+        error: String(error),
       });
     } finally {
       setIsSubmitting(false);
