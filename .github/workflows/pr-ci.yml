@@ -4,12 +4,18 @@ name: CI
 on:
 	pull_request:
 		branches: [master]
-		types: [ready_for_review]
+		types: [ready_for_review, opened, reopened, synchronize,converted_to_draft]
+
+concurrency:
+  group: pr-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
 	run-frontend-checks:
 		name: Lint / Build / Test (staging → master, labeled "ready for merge")
 		runs-on: ubuntu-latest
+		if: >-
+			github.event.pull_request.draft == false
 
 		steps:
 			- name: Checkout
