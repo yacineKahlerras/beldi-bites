@@ -4,7 +4,7 @@ import FeaturedSection from "@/components/featured";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen random-class">
+    <div className="flex flex-col min-h-screen">
       <Nav />
       <Hero />
       <FeaturedSection />
